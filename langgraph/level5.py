@@ -625,6 +625,10 @@ class NotebookLMApp:
         
         # Initialize LangGraph
         self.graph = self._create_graph()
+
+    def get_graph(self) -> StateGraph:
+        """Get the LangGraph workflow"""
+        return self.graph
     
     def _create_graph(self) -> StateGraph:
         """Create LangGraph workflow"""
@@ -811,7 +815,6 @@ class NotebookLMApp:
         """
         print(help_text)
 
-
 def load_config() -> Config:
     """Load configuration from environment variables"""
     groq_api_key = os.getenv("GROQ_API_KEY")
@@ -839,6 +842,11 @@ def main():
         print(f"❌ Error: {str(e)}")
         sys.exit(1)
 
+def get_graph() -> StateGraph:
+    """Get the LangGraph workflow"""
+    config = load_config()
+    app = NotebookLMApp(config)
+    return app.get_graph()
 
 if __name__ == "__main__":
     main()
