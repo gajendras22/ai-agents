@@ -17,6 +17,11 @@ logger = logging.getLogger(__name__)
 # --- Constants from constants_and_models.py ---
 MODEL_IMAGE_GENERATION = "gemini-2.0-flash-preview-image-generation"
 
+
+"""This module provides the Image Generation Agent for the Level 5 multimodal agent system, 
+which generates images based on text input using Gemini 2.0 Flash Preview Image Generation."""
+
+
 # --- Image Generation Agent ---
 class ImageGenerationAgent(BaseAgent):
     name: str = Field(default="ImageGenerationAgent")
@@ -26,14 +31,20 @@ class ImageGenerationAgent(BaseAgent):
 
     model_config = {"arbitrary_types_allowed": True}
 
+
+    """Initialize the ImageGenerationAgent with a target directory for saving generated images."""
     def __init__(self, **data):
         super().__init__(**data)
         self.target_directory.mkdir(parents=True, exist_ok=True)
 
+
+    """    This agent generates images based on text input using the Gemini 2.0 Flash Preview Image Generation model."""
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting image generation.")
 
+
+       
         # Get input from session state or routing decision
         input_text = ctx.session.state.get("input_text", "")
         if not input_text:
@@ -49,7 +60,10 @@ class ImageGenerationAgent(BaseAgent):
 
         # Clean input to extract the image description
         input_text = re.sub(r'^(Generate|Create|Render)\s+(an\s+)?image\s+(of|for|about)\s*', '', input_text, flags=re.IGNORECASE).strip()
-
+       
+       
+       
+        """ Remove common prefixes like "Generate an image of", "Create an image for", etc."""
         if not input_text:
             error_response = "Error: No input provided for image generation."
             yield Event(
@@ -82,6 +96,8 @@ class ImageGenerationAgent(BaseAgent):
             if not image_data:
                 raise ValueError("No image data returned by the model.")
 
+
+            """Process the response to extract image data and text response."""   
             # Save the image
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             image_path = self.target_directory / f"generated_image_{timestamp}.png"

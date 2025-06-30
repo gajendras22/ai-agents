@@ -26,6 +26,9 @@ from level5.prompts import (
 
 logger = logging.getLogger(__name__)
 
+
+
+"""This module provides the multimodal agents for the Level 5 system, including:"""
 # --- Helper Functions ---
 def extract_text_from_message(message: Any) -> str:
     if not message:
@@ -52,6 +55,8 @@ def extract_text_from_message(message: Any) -> str:
         return message
     return str(message)
 
+
+"""This module provides the Image Generation Agent for the Level 5 multimodal agent system,"""
 # --- Image Generation Agent ---
 class ImageGenerationAgent(BaseAgent):
     name: str = Field(default="ImageGenerationAgent")
@@ -65,6 +70,9 @@ class ImageGenerationAgent(BaseAgent):
         super().__init__(**data)
         self.target_directory.mkdir(parents=True, exist_ok=True)
 
+
+
+    """    This agent generates images based on text input using the Gemini 2.0 Flash Preview Image Generation model."""
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting image generation.")
@@ -161,6 +169,9 @@ class ImageGenerationAgent(BaseAgent):
                 author=self.name
             )
 
+
+
+"""This module provides the Script Generator Agent for the Level 5 multimodal agent system,"""
 # --- Script Generator Agent ---
 class ScriptGeneratorAgent(LlmAgent):
     name: str = "ScriptGeneratorAgent"
@@ -174,6 +185,9 @@ class ScriptGeneratorAgent(LlmAgent):
             output_key="podcast_script"
         )
     
+    
+    
+    """This agent generates podcast scripts based on input text or routing decisions using the Gemini 2.0 Flash model."""
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting podcast script generation.")
@@ -238,6 +252,8 @@ class ScriptGeneratorAgent(LlmAgent):
                 author=self.name
             )
 
+
+"""This module provides the Podcast Generator Agent for the Level 5 multimodal agent system,"""
 # --- Podcast Generator Agent ---
 class PodcastGeneratorAgent(BaseAgent):
     name: str
@@ -271,6 +287,9 @@ class PodcastGeneratorAgent(BaseAgent):
         
         return segments
     
+
+
+    """    This agent generates podcast audio from a script using ElevenLabs API, alternating between two voices (Sarah and George)."""
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting podcast generation.")
@@ -357,6 +376,9 @@ class PodcastGeneratorAgent(BaseAgent):
                 author=self.name
             )
 
+
+
+"""This module provides the Real-time Audio Agent for the Level 5 multimodal agent system,"""
 # --- Real-time Audio Agent ---
 class RealtimeAudioAgent(BaseAgent):
     name: str
@@ -396,6 +418,10 @@ class RealtimeAudioAgent(BaseAgent):
                 "analysis": "Failed to process audio"
             }
     
+    
+    
+    
+    """This agent processes real-time audio input, converting it to PCM format and performing analysis using the Gemini Live model."""
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting real-time audio processing.")

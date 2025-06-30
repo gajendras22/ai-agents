@@ -18,6 +18,8 @@ MODEL_GEMINI_2_FLASH = "gemini-2.0-flash-exp"
 class ScriptGeneratorAgent(LlmAgent):
     name: str = "ScriptGeneratorAgent"
     
+
+    """    This agent generates a podcast script based on the provided input text or routing decision."""
     def __init__(self, name: str = "ScriptGeneratorAgent", model: str = MODEL_GEMINI_2_FLASH):
         super().__init__(
             name=name,
@@ -27,6 +29,8 @@ class ScriptGeneratorAgent(LlmAgent):
             output_key="podcast_script"
         )
     
+
+    """    This agent generates a podcast script based on the provided input text or routing decision."""
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting podcast script generation.")
         input_text = ctx.session.state.get("input_text", "")

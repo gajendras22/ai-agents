@@ -29,11 +29,17 @@ class PodcastGeneratorAgent(BaseAgent):
     
     model_config = {"arbitrary_types_allowed": True}
     
+
+
+    """    This agent generates a podcast audio file from a script using ElevenLabs API."""
     def __init__(self, name: str = "PodcastGenerator", model: Any = None):
         super().__init__(name=name, model=model or MODEL_GEMINI_2_FLASH)
         self.client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))
         self.target_directory.mkdir(parents=True, exist_ok=True)
     
+
+
+    """    Splits the provided script into segments for two speakers, alternating between them."""
     def _split_script_into_speakers(self, script: str) -> List[Dict[str, str]]:
         segments = []
         current_speaker = 1
@@ -50,6 +56,9 @@ class PodcastGeneratorAgent(BaseAgent):
         
         return segments
     
+    
+    
+    """    This method runs the podcast generation process asynchronously, yielding events with the generated audio or error messages."""
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting podcast generation.")
         

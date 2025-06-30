@@ -7,7 +7,7 @@ from google.genai import types
 from typing import AsyncGenerator, Dict, Any, Optional
 import os
 
-from audio_processor import AudioProcessor
+from audio_processor import AudioProcessor # type: ignore
 from constants_and_models import AudioConfig, AUDIO_SAMPLE_RATE, AUDIO_BIT_DEPTH, AUDIO_CHANNELS
 from constants_and_models import MODEL_GEMINI_LIVE
 
@@ -21,10 +21,16 @@ class RealtimeAudioAgent(BaseAgent):
     
     model_config = {"arbitrary_types_allowed": True}
     
+
+
+    """    This agent processes real-time audio streams, converting them to PCM format and performing analysis."""
     def __init__(self, name: str = "RealtimeAudioAgent", model: str = MODEL_GEMINI_LIVE):
         super().__init__(name=name, model=model)
         self.audio_processor = AudioProcessor()
     
+
+
+    """    Processes an audio stream by converting it to PCM format, performing analysis, and returning results."""
     async def process_audio_stream(self, audio_data: bytes, config: AudioConfig) -> Dict[str, Any]:
         try:
             base64_audio = self.audio_processor.audio_to_base64(audio_data)
@@ -51,7 +57,7 @@ class RealtimeAudioAgent(BaseAgent):
                 "transcription": "",
                 "analysis": "Failed to process audio"
             }
-    
+    """    This method runs the real-time audio processing agent asynchronously, yielding events with the results or error messages."""
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting real-time audio processing.")
         

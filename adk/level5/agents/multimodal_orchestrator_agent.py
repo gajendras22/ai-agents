@@ -19,6 +19,9 @@ from level5.agents.llm_agents import (
 
 logger = logging.getLogger(__name__)
 
+
+
+
 # --- Enhanced Multimodal Orchestrator Agent ---
 class MultimodalOrchestratorAgent(BaseAgent):
     name: str
@@ -85,6 +88,8 @@ class MultimodalOrchestratorAgent(BaseAgent):
             link_processor=link_processor
         )
 
+
+    """    This method runs the multimodal orchestrator agent asynchronously, processing input text for link processing and summarization,"""
     @override
     async def _run_async_impl(
         self, ctx: InvocationContext
@@ -92,6 +97,8 @@ class MultimodalOrchestratorAgent(BaseAgent):
         logger.info(f"[{self.name}] Starting enhanced multimodal processing workflow.")
         logger.info(f"[{self.name}] Running Router Agent...")
         
+
+        """        This method processes the input text to determine if it is a URL for link processing or a regular text query for summarization."""
         # Check for link processing requests
         input_text = ctx.session.state.get("input_text", "")
         if input_text.startswith(("http://", "https://")):
@@ -125,7 +132,10 @@ class MultimodalOrchestratorAgent(BaseAgent):
                     author=self.name
                 )
                 return
-
+        
+        
+        
+        """If the input text is not a URL, we assume it's a regular text query."""
         # Check for summary requests
         if any(keyword in input_text.lower() for keyword in ["summarize", "summary", "summarize the above", "summarize this"]):
             last_doc_id = ctx.session.state.get("last_processed_document_id")
@@ -360,7 +370,10 @@ class MultimodalOrchestratorAgent(BaseAgent):
                 )
 
         logger.info(f"[{self.name}] Enhanced multimodal workflow completed.")
-
+    
+    
+    
+    """ This method runs the multimodal orchestrator agent in a live session, providing real-time interaction capabilities."""
     @override
     async def _run_live_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         logger.info(f"[{self.name}] Starting live session.")
