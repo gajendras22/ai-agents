@@ -2,27 +2,21 @@
 --
 *built-in.py* is an example script that demonstrates how to create a conversational AI agent with built-in memory using the agno framework and the Gemini language model.
 
-What does this file do?
-1. Loads environment variables (including your Google API key) for secure configuration.
-2. Initializes an AI agent ("Built-In Memory Agent") with the Gemini model, enabling:
+Key Features :
+- Built-in memory to include previous chat history in conversations.
+- Contextual awareness by specifying how many previous responses to remember.
+- A positive, polite assistant persona via a custom description.
+- Creates a web-based playground app for interactive conversations with the agent.
 
-   i. Built-in memory to include previous chat history in conversations.
+⚙️ **Setup**
 
-   ii. Contextual awareness by specifying how many previous responses to remember.
+Create a .env file in the project root:
 
-   iii. A positive, polite assistant persona via a custom description.
+```GOOGLE_API_KEY=your-api-key-here```
 
-   iv. Creates a web-based playground app for interactive conversations with the agent.
-   
-3. Runs the playground server so you can chat with the memory-enabled agent in your browser.
-4. How to use
+▶️ **Run the script**
 
-      Add your GOOGLE_API_KEY to a .env file in the project directory.
-
-      Run the script: *python built-in.py*
-
-Open the provided web interface to interact with the agent and experience its conversational memory.
-This file is a practical starting point for building context-aware conversational agents with memory using agno and Gemini.
+```python built-in.py```
    
    ![image](https://github.com/user-attachments/assets/4d0e8de5-207f-46bd-8f18-1660df049933)
 
@@ -30,35 +24,16 @@ This file is a practical starting point for building context-aware conversationa
 --
 *built-in-cli.py* is a command-line example that demonstrates how to interact with a conversational AI agent with built-in memory using the agno framework and the Gemini language model.
 
-What does this file do?
-1. Loads environment variables (including your Google API key) for secure configuration.
-2. Initializes an AI agent with:
+⚙️ **Setup**
 
-   i. The Gemini model for language understanding.
+Create a .env file in the project root:
 
-   ii. Built-in memory to include previous chat history in conversations.
+```GOOGLE_API_KEY=your-api-key-here```
 
-   iii. Contextual awareness by specifying how many previous responses to remember.
+▶️ **Run the script**
 
-   iv. A positive, polite assistant persona via a custom description.
+```python built-in-cli.py```
 
-   v. Monitoring and markdown formatting enabled.
-
-   vi. Prompts the agent with a message and streams the response in the terminal.
-
-   vii. Prints the agent’s memory (conversation history) after each interaction for transparency.
-
-   viii. Demonstrates follow-up questions and how the agent uses memory to answer contextually.
-   
-3. How to use
-
-   Add your GOOGLE_API_KEY to a .env file in the project directory.
-
-   Run the script: *python built-in-cli.py*
-   
-4. Interact with the agent and observe how it remembers and responds to previous messages.
-   
-This file is a practical starting point for building and testing memory-enabled conversational agents in a command-line environment using agno and Gemini.
 
    ![image](https://github.com/user-attachments/assets/79b74ba1-279c-4dc1-ae75-9e0002b50cf1)
    ![image](https://github.com/user-attachments/assets/7e5c61a5-0f11-407f-8b3b-8ab463159594)
@@ -67,27 +42,21 @@ This file is a practical starting point for building and testing memory-enabled 
 --
 *session-storage.py* is an example script that demonstrates how to create a conversational AI agent with persistent session memory using the agno framework and the Gemini language model.
 
-What does this file do?
-1. Loads environment variables (including your Google API key) for secure configuration.
-2. Initializes an AI agent ("SessionStorageAgent") with:
+Initializes an AI agent ("SessionStorageAgent") with:
+- The Gemini model for language understanding.
+- Persistent conversation memory using SQLite, so chat history is saved across sessions and script restarts.
+- A fixed session ID to ensure continuity of the same conversation over multiple runs.
+- Contextual awareness by including previous chat history in the model input.
 
-   i. The Gemini model for language understanding.
+⚙️ **Setup**
 
-   ii. Persistent conversation memory using SQLite, so chat history is saved across sessions and script restarts.
+Create a .env file in the project root:
 
-   iii. A fixed session ID to ensure continuity of the same conversation over multiple runs.
+```GOOGLE_API_KEY=your-api-key-here```
 
-   iv. Contextual awareness by including previous chat history in the model input.
+▶️ **Run the script**
 
-3. Creates a web-based playground app for interactive conversations with the agent.
-4. Runs the playground server so you can chat with the agent and experience persistent memory in your browser.
-5. How to use
-
-   Add your GOOGLE_API_KEY to a .env file in the project directory.
-
-   Run the script:
-
-6. Open the provided web interface to interact with the agent and see how it remembers previous conversations, even after restarting the script.
+```python session-storage.py```
 
 This file is a practical starting point for building persistent, context-aware conversational agents using agno, Gemini, and SQLite storage.
 
@@ -98,32 +67,16 @@ This file is a practical starting point for building persistent, context-aware c
 --
 *session-storage-cli.py* is a command-line example that demonstrates how to create a conversational AI agent with persistent session memory using the agno framework and the Gemini language model.
 
-What does this file do?
-1. Loads environment variables (including your Google API key) for secure configuration.
-2. Initializes an AI agent ("Session Storage Agent") with:
+⚙️ **Setup**
 
-   i. The Gemini model for language understanding.
+Create a .env file in the project root:
 
-   ii. Persistent conversation memory using SQLite, so chat history is saved across sessions and script restarts.
+```GOOGLE_API_KEY=your-api-key-here```
 
-   iii. A fixed session ID to ensure continuity of the same conversation over multiple runs.
+▶️ **Run the script**
 
-   iv. Contextual awareness by including previous chat history in the model input.
+```python session-storage-cli.py```
 
-   v. Monitoring, markdown formatting, and streaming enabled for better debugging and output.
-
-   vi. Prompts the agent with a question and a follow-up to demonstrate memory.
-
-   vii. Prints the agent’s session memory (conversation history) in the terminal for transparency.
-3. How to use
-
-   Add your GOOGLE_API_KEY to a .env file in the project directory.
-
-   Run the script: *python session-storage-cli.py*
-   
-4. Interact with the agent and observe how it remembers previous messages, even after restarting the script.
-
-This file is a practical starting point for building persistent, context-aware conversational agents in a command-line environment using agno, Gemini, and SQLite storage.
 
    https://github.com/user-attachments/assets/0e7c44b3-3b6f-43b7-860c-f97a49143afa
 
@@ -131,33 +84,25 @@ This file is a practical starting point for building persistent, context-aware c
 --
 *user-memory.py* is an advanced example demonstrating how to build a conversational AI agent with both persistent session memory and user-specific long-term memory using the agno framework and the Gemini language model.
 
-What does this file do?
-1. Loads environment variables (including your Google API key) for secure configuration.
-2. Sets up two types of memory:
-
-   i.User-specific memory: Stores long-term user information in a dedicated SQLite database.
-
-   ii. Session (conversation) memory: Stores chat history in a separate SQLite database for persistent context across sessions.
+This sets up two types of memory:
+- User-specific memory: Stores long-term user information in a dedicated SQLite database.
+- Session (conversation) memory: Stores chat history in a separate SQLite database for persistent context across sessions.
    
-4. Initializes an AI agent ("UserMemoryAgent") with:
+Initializes an AI agent ("UserMemoryAgent") with:
+- The Gemini model for language understanding.
+- Both user and agent memory enabled for richer, more personalized conversations.
+- Contextual awareness by including previous chat history in the model input.
+- Markdown formatting, streaming responses, and session summaries enabled.
 
-   i. The Gemini model for language understanding.
+⚙️ **Setup**
 
-   ii. Both user and agent memory enabled for richer, more personalized conversations.
+Create a .env file in the project root:
 
-   iii. Contextual awareness by including previous chat history in the model input.
+```GOOGLE_API_KEY=your-api-key-here```
 
-   iv. Markdown formatting, streaming responses, and session summaries enabled.
+▶️ **Run the script**
 
-5. Creates a web-based playground app for interactive conversations with the agent.
-6. Runs the playground server so you can chat with the agent and experience both persistent and user-specific memory in your browser.
-7. How to use
-
-   Add your GOOGLE_API_KEY to a .env file in the project directory.
-
-   Run the script:*python user-memory.py*
-
-8. Open the provided web interface to interact with the agent and see how it remembers both session and user-specific information.
+```python user-memory.py```
 
 This file is a practical starting point for building highly personalized, context-aware conversational agents using agno, Gemini, and advanced memory management.
 
@@ -168,32 +113,15 @@ This file is a practical starting point for building highly personalized, contex
 --
 *user-memory-cli.py* is an advanced command-line example that demonstrates how to build a conversational AI agent with both persistent session memory and user-specific long-term memory using the agno framework and the Gemini language model.
 
-What does this file do?
-1. Loads environment variables (including your Google API key) for secure configuration.
-2. Sets up two types of memory:
+⚙️ **Setup**
 
-   i. User-specific memory: Stores long-term user information in a dedicated SQLite database.
+Create a .env file in the project root:
 
-   ii. Session (conversation) memory: Stores chat history in a separate SQLite database for persistent context across sessions.
-3. Initializes an AI agent ("UserMemoryAgent") with:
+```GOOGLE_API_KEY=your-api-key-here```
 
-   i. The Gemini model for language understanding.
+▶️ **Run the script**
 
-   ii. Both user and agent memory enabled for richer, more personalized conversations.
-
-   iii. Contextual awareness by including previous chat history in the model input.
-
-   iv. Markdown formatting, streaming responses, intermediate step streaming, and monitoring enabled.
-
-4. Includes a helper function to prompt the agent and throttle requests, allowing time for memory updates and avoiding rate limits.
-5. Demonstrates a sequence of interactions to show how the agent remembers, updates, and deletes user-specific information.
-6. How to use
-
-   Add your GOOGLE_API_KEY to a .env file in the project directory.
-
-   Run the script:*python memory-user-cli.py*
-   
-7. Interact with the agent in your terminal and observe how it remembers and manages both session and user-specific information.
+```python user-memory-cli.py```
 
 This file is a practical starting point for building highly personalized, context-aware conversational agents in a command-line environment using agno, Gemini, and advanced memory management.
 

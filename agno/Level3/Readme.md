@@ -2,27 +2,23 @@
 --
 web-teams.py is an example of orchestrating multiple AI agents as a collaborative team to perform advanced web search and synthesis tasks using the agno framework.
 
-What does this file do?
+🔑Key Features:
+1. It defines three specialized agents:
+    - Query Reformulator Agent: Improves user queries for more effective searching.
+    - Web Searcher Agent: Uses [DuckDuckGo](https://duckduckgo.com/) to search the web based on the reformulated query.
+    - Answer Synthesis Agent: Synthesizes information from multiple articles into a coherent answer.
+2. Coordinates these agents as a team using the Team class, so each agent performs its task in sequence, passing results to the next.
+3. Enables advanced features such as tool usage visibility, markdown formatting, debug mode, and sharing of context/history among agents.
 
-1. Loads environment variables (including the Google API key) for secure configuration.
+⚙️ Setup
 
-2. Defines three specialized agents:
+Create a .env file in the project root:
 
-    i. Query Reformulator Agent: Improves user queries for more effective searching.
-   
-    ii. Web Searcher Agent: Uses DuckDuckGo tools to search the web based on the reformulated query.
-   
-    iii. Answer Synthesis Agent: Synthesizes information from multiple articles into a coherent answer.
-   
-3. Coordinates these agents as a team using the Team class, so each agent performs its task in sequence, passing results to the next.
-4. Enables advanced features such as tool usage visibility, markdown formatting, debug mode, and sharing of context/history among agents.
-5. Provides a web-based playground app for interactive experimentation with the agent team.
-6. How to use:
+```GOOGLE_API_KEY=your-api-key-here```
 
-   Make sure you have a .env file with your GOOGLE_API_KEY.
+▶️ Run the script
 
-   Run the script: *python web-teams.py*
-8. Open the provided web interface to interact with the multi-agent web search and synthesis workflow.
+```python web-teams.py```
 
 This file demonstrates how to build modular, collaborative AI workflows for complex information retrieval and summarization tasks.
 
@@ -37,25 +33,21 @@ CLI:
 --
 websearch.py is a sample script demonstrating how to build an AI-powered web search agent using the agno framework.
 
-What does this file do?
-1. Loads environment variables (including your Google API key) for secure configuration.
-2. Creates a single AI agent (WebSearchAgent) that:
-   
-    i. Uses the Gemini language model for understanding and generating responses.
-   
-    ii. Integrates DuckDuckGo search tools to fetch real-time web results.
-   
-    iii. Streams responses and intermediate reasoning steps for transparency.
-   
-    iv. Supports markdown formatting and monitoring for debugging.
-   
-3. Launches an interactive web playground where you can chat with the agent and see how it performs live web searches and reasoning.
-4. How to use
+Creates a single AI agent (WebSearchAgent) that:
+- Uses the Gemini language model for understanding and generating responses.
+- Integrates DuckDuckGo search tools to fetch real-time web results.
+- Streams responses and intermediate reasoning steps for transparency.
+- Supports markdown formatting and monitoring for debugging.
 
-    Add your GOOGLE_API_KEY to a .env file in the project directory.
+⚙️ Setup
 
-    Run the script: *python websearch.py*
-5. Open the provided web interface to interact with the web search agent.
+Create a .env file in the project root:
+
+```GOOGLE_API_KEY=your-api-key-here```
+
+▶️ Run the script
+
+```python websearch.py```
 
 This file is a practical example of combining LLMs with web search tools for real-time, interactive information retrieval.
 

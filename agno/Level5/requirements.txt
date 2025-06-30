@@ -1,0 +1,7 @@
+agno
+chromadb
+google-generativeai
+python-dotenv
+elevenlabs
+pydub
+opentelemetry-sdk

@@ -2,51 +2,34 @@ Document Q&A WorkFlow
 --
 l4-w.py is an advanced example script that demonstrates how to build an end-to-end document question answering (Q&A) workflow using the Agno framework, the Gemini language model, and ChromaDB for vector storage.
 
-What does this file do?
+🔑 Key Features
+- Downloads and processes PDFs from a URL
+- Uses Gemini embeddings + ChromaDB for semantic search
+- Answers user questions based on document content using a Gemini agent
+- Caches repeated queries for faster responses
+- Maintains workflow state with SQLite
+- Includes retry logic for Google API quota errors
+- Launches an interactive Agno Playground web UI for real-time Q&A
 
-1. Loads environment variables and API keys from a .env file for secure configuration.
-2. Downloads and chunks a PDF from a specified URL.
-3. Embeds the PDF content using Gemini embeddings and stores it in a Chroma vector database for semantic search.
-4. Defines a workflow class that:
+⚙️ **Setup**
 
-    i. Accepts user questions.
-   
-    ii. Searches the vector database for relevant information.
-   
-    iii. Uses a Gemini-powered agent to answer questions based on the PDF content.
+Create a .env file in the project root:
 
-    iv. Caches answers for repeated questions to improve efficiency.
+```
+GOOGLE_API_KEY=your-api-key-here
+AGNO_API_KEY=your-agno-api-key
+```
 
-    v. Handles Google API quota errors with exponential backoff and retry logic.
+▶️ **Run the script**
 
-5. Persists workflow state using SQLite storage for durability.
-6. Launches an interactive Agno Playground web UI for users to ask questions about the PDF and receive answers in real time.
+```python l4-w.py```
 
-How to use
 
-1. Install dependencies - *pip install agno chromadb google-genai python-dotenv*
-2. Set up your environment
-    Create a .env file in the project directory and add your API keys:
-     *GOOGLE_API_KEY=your_google_api_key*
-   
-     *AGNO_API_KEY=your_agno_api_key*
-
-3. Run the script: *python l4-w.py*
-4. Open the web interface: 
-Follow the instructions in the terminal to access the Agno Playground and interact with the document Q&A workflow.
-
-Customization:
+🎨**Customization:**
 
 - Change the PDF URL in the script to use your own document.
 - Adjust the workflow or agent instructions to fit your use case.
 
-Dependencies:
-
-- agno
-- chromadb
-- google-genai
-- dotenv
-- sqlite3
 
 This script is ideal for building interactive, document-aware AI assistants that can answer questions based on the content of uploaded or linked PDFs.
 

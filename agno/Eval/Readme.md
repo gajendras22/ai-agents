@@ -2,9 +2,8 @@ Evaluation
 --
 This is an advanced example script that demonstrates how to orchestrate a team of AI agents for web search, synthesis, and automated evaluation using the Agno framework and the Gemini language model.
 
-What does this file do?
-1. Loads environment variables (including your Google API key) for secure configuration.
-2. Defines a multi-agent team:
+Key Features:
+1. Defines a multi-agent team:
 
       i. Query Reformulator Agent: Improves user queries for more effective searching.
     
@@ -12,9 +11,7 @@ What does this file do?
     
       iii. Answer Synthesis Agent: Synthesizes information from multiple articles into a coherent answer.
 
-3. Coordinates these agents as a team using the Team class, so each agent performs its task in sequence, passing results to the next.
-4. Enables advanced features such as tool usage visibility, markdown formatting, debug mode, and sharing of context/history among agents.
-5. Provides a web-based playground app for interactive experimentation with the agent team.
+2. Coordinates these agents as a team using the Team class, so each agent performs its task in sequence, passing results to the next.
 
 **Automated Evaluation**
 
@@ -24,21 +21,17 @@ A key feature of this script is the use of the AccuracyEval class to automatical
 3. Prints evaluation results for transparency and debugging, helping you measure the quality and relevance of the team’s answers.
 4. This enables you to benchmark and iterate on your multi-agent workflows with real, automated feedback—making it easier to improve your AI system’s accuracy and reliability.
 
-How to use
-1. Install dependencies: *pip install agno chromadb google-genai python-dotenv*
-2. Set up your environment
+⚙️ Setup
 
-      Create a .env file in the project directory and add your API keys: *GOOGLE_API_KEY=your_google_api_key*
-    
-      Run the script: *python web-teams.py*
+Create a .env file in the project root:
 
-3. View the evaluation results : The script will print the evaluation outcome in the terminal.
-4. Open the web interface : Access the Agno Playground to interact with the agent team in real time.
+```GOOGLE_API_KEY=your-api-key-here```
 
-Dependencies
-- agno
-- google-genai
-- python-dotenv
+▶️ Run the script
+
+```python web-teams.py```
+
+
 
 This script is ideal for building, testing, and evaluating collaborative AI agent workflows for complex information retrieval and synthesis tasks.
 
