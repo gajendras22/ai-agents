@@ -15,6 +15,9 @@ except ImportError:
 
 logger = logging.getLogger(__name__)
 
+
+
+"""This module provides a manager for ChromaDB integration, allowing storage, retrieval, and processing of documents."""
 # --- ChromaDB Integration ---
 class ChromaDBManager:
     def __init__(self, podcast_agent=None, text_agent=None, image_generation_agent=None, session_service=None):
@@ -32,6 +35,7 @@ class ChromaDBManager:
         self.image_generation_agent = image_generation_agent
         self.session_service = session_service
 
+    """This class manages the ChromaDB collection for storing and retrieving documents."""
     def store_document(self, url: str, content: str, content_type: str = "text") -> str:
         doc_id = hashlib.md5(url.encode()).hexdigest()
         try:
@@ -60,7 +64,10 @@ class ChromaDBManager:
                 ids=[doc_id]
             )
         return doc_id
-
+    
+    
+    
+    """Stores a document in the ChromaDB collection with a unique ID based on the URL."""
     def search_similar(self, query: str, n_results: int = 5) -> List[Dict[str, Any]]:
         results = self.collection.query(
             query_texts=[query],
@@ -75,7 +82,10 @@ class ChromaDBManager:
             }
             for id, doc, meta in zip(results["ids"][0], results["documents"][0], results["metadatas"][0])
         ]
-
+    
+    
+    
+    """Searches for documents similar to the provided query text."""
     def get_all_documents(self) -> List[Dict[str, Any]]:
         results = self.collection.get()
         return [
@@ -87,7 +97,9 @@ class ChromaDBManager:
             }
             for id, doc, meta in zip(results["ids"], results["documents"], results["metadatas"])
         ]
+    
 
+    """Retrieves all documents stored in the ChromaDB collection."""
     def get_document_by_id(self, doc_id: str) -> Optional[Dict[str, Any]]:
         try:
             results = self.collection.get(ids=[doc_id])
@@ -103,6 +115,8 @@ class ChromaDBManager:
             logger.error(f"Error getting document by ID: {str(e)}")
             return None
 
+
+    """Retrieves a document by its unique ID from the ChromaDB collection."""
     async def generate_summary(self, doc_ids: List[str]) -> str:
         try:
             docs = self.collection.get(ids=doc_ids)
@@ -148,7 +162,9 @@ class ChromaDBManager:
             return final_response
         except Exception as e:
             return f"Error generating summary: {str(e)}"
-
+   
+   
+    """Generates a summary of the documents identified by the provided IDs using the text agent."""
     async def generate_podcast(self, doc_ids: List[str]) -> str:
         try:
             # Retrieve documents from ChromaDB
@@ -209,6 +225,9 @@ class ChromaDBManager:
             logger.error(f"Error generating podcast: {str(e)}")
             return f"❌ Error generating podcast: {str(e)}"
 
+
+
+    """Generates a podcast based on the content of the documents identified by the provided IDs."""
     async def generate_image(self, doc_ids: List[str]) -> str:
         try:
             docs = self.collection.get(ids=doc_ids)

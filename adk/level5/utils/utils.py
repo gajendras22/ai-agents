@@ -1,6 +1,9 @@
 from google.genai import types
 from typing import Any
 
+
+
+"""This module provides utilities for extracting text from various message formats, including Google GenAI types and dictionaries."""
 def extract_text_from_message(message: Any) -> str:
     if not message:
         return ""

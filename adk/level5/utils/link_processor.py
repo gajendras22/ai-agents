@@ -6,6 +6,8 @@ from level5.utils.chroma_db_manager import ChromaDBManager
 
 logger = logging.getLogger(__name__)
 
+
+"""This module provides utilities for processing links, extracting content, and storing it in a ChromaDB database."""
 class LinkProcessor:
     def __init__(self, chroma_manager: ChromaDBManager):
         self.chroma_manager = chroma_manager

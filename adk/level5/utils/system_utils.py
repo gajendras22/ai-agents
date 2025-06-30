@@ -6,6 +6,9 @@ from level5.utils.audio_utils import AudioUtils
 
 logger = logging.getLogger(__name__)
 
+
+
+"""This module provides configuration and setup helpers for the Level 5 multimodal agent system."""
 # --- Configuration and Setup Helpers ---
 def setup_audio_environment():
     try:
@@ -24,6 +27,10 @@ def setup_audio_environment():
         logger.error(f"Missing required audio libraries: {e}")
         return False
 
+
+
+
+"""This module provides a function to retrieve system information, including available agents, models, audio configuration, and supported formats."""
 def get_system_info() -> Dict[str, Any]:
     return {
         "agents": {

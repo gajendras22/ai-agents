@@ -15,6 +15,8 @@ from level5.utils import ChromaDBManager, LinkProcessor, AudioUtils, AudioConfig
 
 logger = logging.getLogger(__name__)
 
+
+"""This module provides an enhanced interactive interface for the Level 5 multimodal agent system, allowing users to interact with various agents and functionalities."""
 # --- Enhanced Interactive Interface ---
 class MultimodalAgentInterface:
     def __init__(self):
@@ -29,17 +31,25 @@ class MultimodalAgentInterface:
         )
         self.link_processor = LinkProcessor(self.chroma_manager)
 
+    """ This class provides an interactive interface for the multimodal agent system, allowing users to chat with agents, process audio files, generate podcasts, images, and more."""
     async def chat(self, query: str, audio_file_path: Optional[str] = None) -> str:
         return await call_agent(query, audio_file_path)
 
+
+
+    """ Processes a text query and returns a response from the multimodal agent system."""
     async def process_audio_file(self, audio_file_path: str, query: str = "Analyze this audio file") -> str:
         if not Path(audio_file_path).exists():
             return f"Error: Audio file not found at {audio_file_path}"
         return await self.chat(query, audio_file_path)
 
+
+    """ Starts a real-time audio processing session and returns a response from the multimodal agent system."""
     async def start_realtime_audio(self, query: str = "Start real-time audio processing") -> str:
         return await self.chat(f"real-time audio: {query}")
 
+
+    """ Generates a podcast from the provided text input and returns the generated podcast content."""
     async def generate_podcast(self, text: str) -> str:
         try:
             session = await self.session_service.get_session(
@@ -74,6 +84,7 @@ class MultimodalAgentInterface:
             logger.error(f"Error generating podcast: {str(e)}")
             return f"Error: {str(e)}"
 
+    """ Generates a podcast script based on the provided topic and returns the generated script content."""
     async def generate_podcast_script(self, topic: str) -> str:
         try:
             session = await self.session_service.get_session(
@@ -107,7 +118,8 @@ class MultimodalAgentInterface:
         except Exception as e:
             logger.error(f"Error generating podcast script: {str(e)}")
             return f"Error: {str(e)}"
-
+    
+    """ Generates an image based on the provided description and returns the generated image content."""
     async def generate_image(self, description: str) -> str:
         try:
             session = await self.session_service.get_session(
@@ -141,6 +153,8 @@ class MultimodalAgentInterface:
             logger.error(f"Error generating image: {str(e)}")
             return f"Error: {str(e)}"
 
+
+    """ Retrieves the conversation history from the current session."""
     async def get_conversation_history(self) -> List[Dict[str, Any]]:
         try:
             current_session = await self.session_service.get_session(
@@ -154,7 +168,9 @@ class MultimodalAgentInterface:
         except Exception as e:
             logger.error(f"Error getting conversation history: {e}")
             return []
-
+    
+    
+    """ Clears the conversation history in the current session."""
     async def clear_history(self):
         try:
             current_session = await self.session_service.get_session(
@@ -167,6 +183,8 @@ class MultimodalAgentInterface:
         except Exception as e:
             logger.error(f"Error clearing history: {e}")
 
+
+    """ Processes a link by storing it in the database and returns a confirmation message."""
     async def process_link(self, url: str) -> str:
         try:
             doc_id = self.link_processor.process_link(url)
@@ -176,6 +194,8 @@ class MultimodalAgentInterface:
         except Exception as e:
             return f"❌ Error processing link: {str(e)}"
 
+
+    """ Searches stored data in the database based on a query and returns matching documents."""
     async def search_stored_data(self, query: str) -> str:
         try:
             results = self.chroma_manager.search_similar(query)
@@ -184,7 +204,9 @@ class MultimodalAgentInterface:
             return "No matching documents found"
         except Exception as e:
             return f"❌ Error searching data: {str(e)}"
-
+    
+    
+    """ Lists all stored documents in the database and returns their IDs and URLs."""
     async def list_stored_data(self) -> str:
         try:
             results = self.chroma_manager.get_all_documents()
@@ -194,24 +216,34 @@ class MultimodalAgentInterface:
         except Exception as e:
             return f"❌ Error listing data: {str(e)}"
 
+
+
+    """ Generates a summary from the provided document IDs and returns the summary content."""
     async def generate_summary(self, doc_ids: List[str]) -> str:
         try:
             return await self.chroma_manager.generate_summary(doc_ids)
         except Exception as e:
             return f"❌ Error generating summary: {str(e)}"
 
+
+    """ Generates a podcast from the provided document IDs and returns the generated podcast content."""
     async def generate_podcast_from_data(self, doc_ids: List[str]) -> str:
         try:
             return await self.chroma_manager.generate_podcast(doc_ids)
         except Exception as e:
             return f"❌ Error generating podcast: {str(e)}"
 
+
+
+    """ Generates an image from the provided document IDs and returns the generated image content."""
     async def generate_image_from_data(self, doc_ids: List[str]) -> str:
         try:
             return await self.chroma_manager.generate_image(doc_ids)
         except Exception as e:
             return f"❌ Error generating image: {str(e)}"
 
+
+    """ Starts the interactive mode for the multimodal agent system, allowing users to interact with various capabilities."""
     async def interactive_mode(self):
         print("🤖 Enhanced Multimodal AI Agent System")
         print("=" * 70)
@@ -276,6 +308,8 @@ class MultimodalAgentInterface:
                 print(f"\n❌ Unexpected error: {str(e)}")
                 logger.error(f"Unexpected error in interactive mode: {str(e)}")
 
+
+"""This module provides an API-like interface for the multimodal agent system, allowing users to interact with various functionalities programmatically."""
 # --- API-like Functions for Integration ---
 class MultimodalAPI:
     def __init__(self):
@@ -298,7 +332,7 @@ class MultimodalAPI:
                 "error": str(e),
                 "type": "text"
             }
-    
+    """Processes a text input and returns a response from the multimodal agent interface."""
     def process_audio_file(self, file_path: str, instructions: str = "Analyze this audio") -> Dict[str, Any]:
         try:
             validation = AudioUtils.validate_audio_file(file_path)
@@ -322,7 +356,7 @@ class MultimodalAPI:
                 "error": str(e),
                 "type": "audio"
             }
-    
+    """Starts a real-time audio session and returns the configuration and response."""
     def start_realtime_audio_session(self, config: Optional[AudioConfig] = None) -> Dict[str, Any]:
         try:
             if config is None:
@@ -343,6 +377,8 @@ class MultimodalAPI:
                 "type": "realtime_audio"
             }
     
+    
+    """Generates a podcast from the provided text input and returns the generated podcast content."""
     def generate_podcast(self, text: str) -> Dict[str, Any]:
         try:
             response = asyncio.run(self.interface.generate_podcast(text))
@@ -359,6 +395,7 @@ class MultimodalAPI:
                 "type": "speech_generation"
             }
     
+    """Generates a podcast script based on the provided topic and returns the generated script content."""
     def generate_podcast_script(self, topic: str) -> Dict[str, Any]:
         try:
             response = asyncio.run(self.interface.generate_podcast_script(topic))
@@ -374,7 +411,7 @@ class MultimodalAPI:
                 "error": str(e),
                 "type": "script_generation"
             }
-    
+    """Generates an image based on the provided description and returns the generated image content."""
     def generate_image(self, description: str) -> Dict[str, Any]:
         try:
             response = asyncio.run(self.interface.generate_image(description))
@@ -390,7 +427,7 @@ class MultimodalAPI:
                 "error": str(e),
                 "type": "image_generation"
             }
-    
+    """Retrieves the conversation history from the current session."""
     def get_supported_formats(self) -> Dict[str, List[str]]:
         return {
             "audio": [".wav", ".mp3", ".m4a", ".aac"],
@@ -401,7 +438,7 @@ class MultimodalAPI:
             "script_generation": ["text"],
             "image_generation": ["text"]
         }
-
+"""Retrieves the conversation history from the current session."""
 def get_system_info() -> Dict[str, Any]:
     return {
         "agents": {

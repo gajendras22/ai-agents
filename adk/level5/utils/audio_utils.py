@@ -13,6 +13,8 @@ except ImportError:
 
 logger = logging.getLogger(__name__)
 
+
+"""This module provides utilities for audio processing, including conversion to PCM format,"""
 # --- Audio Processing Utilities ---
 class AudioProcessor:
     @staticmethod
@@ -32,16 +34,23 @@ class AudioProcessor:
             logger.error(f"Error processing audio file: {e}")
             raise
     
+    
+    """Converts raw audio data to a base64-encoded string."""
     @staticmethod
     def audio_to_base64(audio_data: bytes) -> str:
         return base64.b64encode(audio_data).decode('utf-8')
     
+
+    """ Asynchronously processes an audio file to convert it to PCM format and returns a base64-encoded string."""
     @staticmethod
     async def process_audio_file_async(file_path: str) -> str:
         loop = asyncio.get_event_loop()
         audio_data = await loop.run_in_executor(None, AudioProcessor.convert_to_pcm_16khz, file_path)
         return AudioProcessor.audio_to_base64(audio_data)
 
+
+
+"""This module provides utilities for audio processing, including conversion to PCM format,"""
 # --- Audio Utilities for External Use ---
 class AudioUtils:
     @staticmethod
@@ -63,6 +72,9 @@ class AudioUtils:
         except Exception as e:
             return {"valid": False, "error": str(e)}
     
+    
+    
+    """Creates a test audio configuration for use in testing or development."""
     @staticmethod
     def create_test_audio_config() -> AudioConfig:
         return AudioConfig(
@@ -73,6 +85,8 @@ class AudioUtils:
             realtime=False
         )
     
+
+    """Downloads a sample audio file from a given URL."""
     @staticmethod
     def download_sample_audio(url: str = "https://storage.googleapis.com/generativeai-downloads/data/16000.wav", 
                             output_path: str = "sample.wav") -> bool:
@@ -84,6 +98,9 @@ class AudioUtils:
             logger.error(f"Failed to download sample audio: {e}")
             return False
 
+
+
+""" This module provides utilities for audio processing, including conversion to PCM format,"""
 # --- Configuration and Setup Helpers ---
 def setup_audio_environment():
     try:

@@ -2,6 +2,8 @@ import asyncio
 import logging
 import sys
 
+
+"""This module serves as the main entry point for the Level 5 multimodal agent system, initializing the session and starting the interactive interface."""
 from level5.agent_setup import (
     runner,
     session_service,
@@ -21,8 +23,13 @@ from level5.agent_setup import (
 from level5.constants_and_models import APP_NAME, USER_ID, SESSION_ID, INITIAL_STATE
 from level5.multimodal_interface import MultimodalAgentInterface
 
+
+
 logger = logging.getLogger(__name__)
 
+
+
+"""This module provides the setup for the Level 5 multimodal agent system, including the creation of agents and the runner."""
 # --- Export root agent ---
 root_agent = multimodal_orchestrator
 
@@ -43,6 +50,8 @@ __all__ = [
     "audio_agent"
 ]
 
+
+"""This module serves as the main entry point for the Level 5 multimodal agent system."""
 async def main():
     try:
         print('[DEBUG] Entered __main__')
@@ -65,5 +74,6 @@ async def main():
         print(f"An unexpected error occurred: {e}")
         sys.exit(1)
 
+"""This is the main entry point for the Level 5 multimodal agent system."""
 if __name__ == "__main__":
     asyncio.run(main())

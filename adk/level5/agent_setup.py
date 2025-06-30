@@ -26,6 +26,9 @@ logger = logging.getLogger(__name__)
 # --- Setup Session and Runner ---
 session_service = InMemorySessionService()
 
+
+
+"""This module provides the setup for the Level 5 multimodal agent system, including the creation of agents and the runner."""
 # --- Create the Enhanced Orchestrator Agent Instance ---
 multimodal_orchestrator = MultimodalOrchestratorAgent(
     name="MultimodalOrchestratorAgent",
@@ -41,12 +44,17 @@ multimodal_orchestrator = MultimodalOrchestratorAgent(
     session_service=session_service
 )
 
+
+"""This module serves as the main entry point for the Level 5 multimodal agent system."""
 runner = Runner(
     agent=multimodal_orchestrator,
     app_name=APP_NAME,
     session_service=session_service
 )
 
+
+
+"""This function initializes a new session with the proper initial state."""
 async def initialize_session():
     """Initialize a new session with the proper initial state."""
     try:
@@ -66,6 +74,9 @@ async def initialize_session():
         print(f"[DEBUG] Exception in initialize_session: {e}")
         return None
 
+
+
+"""This function is used to call the agent with a query and an optional audio file path."""
 async def call_agent(query: str, audio_file_path: Optional[str] = None):
     try:
         # Get the most recent session state

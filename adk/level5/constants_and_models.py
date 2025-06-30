@@ -6,6 +6,8 @@ from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 from pathlib import Path
 
+
+""" This module provides constants, configuration, and models for the Level 5 multimodal agent system, including routing decisions, agent responses, and audio configurations."""
 # --- Constants and Configuration ---
 APP_NAME = "multimodal_agent_app"
 USER_ID = "default_user"
@@ -25,6 +27,7 @@ INITIAL_STATE = {
     "last_processed_document_id": None
 }
 
+
 # --- Configure Logging ---
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -34,10 +37,16 @@ logger = logging.getLogger(__name__)
 current_dir = Path(__file__).parent
 load_dotenv(current_dir / ".env")
 
+
+"""Ensure required environment variables are set for API keys."""
 if not os.getenv("GOOGLE_API_KEY"):
     raise ValueError("GOOGLE_API_KEY environment variable not set.")
 if not os.getenv("ELEVENLABS_API_KEY"):
     raise ValueError("ELEVENLABS_API_KEY environment variable not set.")
+
+
+
+
 
 # --- Enums and Models ---
 class ContentType(Enum):
@@ -50,6 +59,9 @@ class ContentType(Enum):
     IMAGE_GENERATION = "image_generation"
     SCRIPT_GENERATION = "script_generation"
 
+
+
+"""This module defines the data models used in the Level 5 multimodal agent system, including routing decisions and agent responses."""
 class RoutingDecision(BaseModel):
     content_types: List[str] = Field(default_factory=list)
     processing_plan: str = ""
@@ -58,12 +70,20 @@ class RoutingDecision(BaseModel):
     instructions: str = ""
     audio_config: Optional[Dict[str, Any]] = None
 
+
+
+"""This module defines the response model for agents in the Level 5 multimodal agent system, including content, metadata, success status, and error messages."""
 class AgentResponse(BaseModel):
     content: str
     metadata: Dict[str, Any] = Field(default_factory=dict)
     success: bool = True
     agent_name: str = ""
     error_message: Optional[str] = None
+
+
+"""This module defines the audio configuration model used in the Level 5 multimodal agent system, 
+including sample rate, bit depth, channels, format, and realtime processing options."""
+
 
 class AudioConfig(BaseModel):
     sample_rate: int = AUDIO_SAMPLE_RATE
