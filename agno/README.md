@@ -16,7 +16,7 @@ AGNO:
   - Pre-built FastAPI Routes: Agno provides pre-built FastAPI routes to serve your Agents, Teams and Workflows.
   - Monitoring: Monitor agent sessions and performance in real-time on agno.com.
 
-![image](https://github.com/user-attachments/assets/974898e8-fb0c-42b1-860a-f35777f1386a)
+![image](assets/446838684-974898e8-fb0c-42b1-860a-f35777f1386a.png)
 
 
 **Level 1: Basic**

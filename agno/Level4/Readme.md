@@ -37,5 +37,5 @@ OUTPUT:
 --
 Link for the PDF used here: https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf
 
-![image](https://github.com/user-attachments/assets/f2e8fb04-2517-42cc-8755-76932f6ebe2f)
+![image](../assets/452541007-f2e8fb04-2517-42cc-8755-76932f6ebe2f.png)
 

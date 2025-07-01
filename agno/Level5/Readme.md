@@ -50,21 +50,21 @@ LANGFUSE_SECRET_KEY=your_langfuse_secret_key   # optional
 OUTPUT:
 --
 WebPage:(https://notebooklm.google)
-![image](https://github.com/user-attachments/assets/3bf20df3-6ee6-402f-ad09-f0f0a414b296)
+![image](../assets/452707715-3bf20df3-6ee6-402f-ad09-f0f0a414b296.png)
 
 YouTube Video: (https://youtu.be/69tPv5xZJjc)
-![image](https://github.com/user-attachments/assets/01b38e08-7357-4ebb-bf82-9c7787cc9b36)
+![image](../assets/452707756-01b38e08-7357-4ebb-bf82-9c7787cc9b36.png)
 
 PDF : (https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf)
-![image](https://github.com/user-attachments/assets/61004c82-f4e5-4468-aee0-256be1821b25)
+![image](../assets/452707819-61004c82-f4e5-4468-aee0-256be1821b25.png)
 
 Plain Text:
-![image](https://github.com/user-attachments/assets/261c7629-8b04-4c48-9aab-af4754c20243)
+![image](../assets/452707852-261c7629-8b04-4c48-9aab-af4754c20243.png)
 
 MindMap Example :
-![mindmap_output](https://github.com/user-attachments/assets/773d0649-2bef-453e-9951-bfec07a91ac0)
+![mindmap_output](../assets/457432224-773d0649-2bef-453e-9951-bfec07a91ac0.png)
 
 Podcast Example:
 
-https://github.com/user-attachments/assets/3257ca7f-0e8e-4d6f-8568-b210e73b4c41
+[Click here for demo video](../assets/460637572-3257ca7f-0e8e-4d6f-8568-b210e73b4c41.mp4)
 

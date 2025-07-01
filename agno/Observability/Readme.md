@@ -26,4 +26,4 @@ This script is ideal for developers who want to add observability, debugging, an
 
 OUTPUT:
 --
-![image](https://github.com/user-attachments/assets/f488dad8-6bae-43d2-94e0-9b2d94aacb4d)
+![image](../assets/452709474-f488dad8-6bae-43d2-94e0-9b2d94aacb4d.png)

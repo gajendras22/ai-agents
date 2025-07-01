@@ -23,11 +23,11 @@ Create a .env file in the project root:
 This file demonstrates how to build modular, collaborative AI workflows for complex information retrieval and summarization tasks.
 
 OUTPUT:
-![image](https://github.com/user-attachments/assets/8c766f3e-cd50-4e10-9492-cb93df02732e)
+![image](../assets/448034075-8c766f3e-cd50-4e10-9492-cb93df02732e.png)
 
 CLI:
-![image](https://github.com/user-attachments/assets/b74a8f84-25de-49f3-8f1f-29452edcbaa7)
-![image](https://github.com/user-attachments/assets/288367b6-7393-4af4-9db5-d8b6e41514a4)
+![image](../assets/448034888-b74a8f84-25de-49f3-8f1f-29452edcbaa7.png)
+![image](../assets/448035094-288367b6-7393-4af4-9db5-d8b6e41514a4.png)
 
 **websearch:**
 --
@@ -52,4 +52,4 @@ Create a .env file in the project root:
 This file is a practical example of combining LLMs with web search tools for real-time, interactive information retrieval.
 
 OUTPUT:
-![image](https://github.com/user-attachments/assets/29b94b21-5a13-4ba5-a077-78f21d78f175)
+![image](../assets/448037856-29b94b21-5a13-4ba5-a077-78f21d78f175.png)

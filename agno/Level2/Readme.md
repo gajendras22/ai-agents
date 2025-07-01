@@ -18,7 +18,7 @@ Create a .env file in the project root:
 
 ```python built-in.py```
    
-   ![image](https://github.com/user-attachments/assets/4d0e8de5-207f-46bd-8f18-1660df049933)
+   ![image](../assets/447225333-4d0e8de5-207f-46bd-8f18-1660df049933.png)
 
 **2. Built-in-cli:**
 --
@@ -35,8 +35,8 @@ Create a .env file in the project root:
 ```python built-in-cli.py```
 
 
-   ![image](https://github.com/user-attachments/assets/79b74ba1-279c-4dc1-ae75-9e0002b50cf1)
-   ![image](https://github.com/user-attachments/assets/7e5c61a5-0f11-407f-8b3b-8ab463159594)
+   ![image](../assets/447225556-79b74ba1-279c-4dc1-ae75-9e0002b50cf1.png)
+   ![image](../assets/447225600-7e5c61a5-0f11-407f-8b3b-8ab463159594.png)
 
 **3. Session-storage:**
 --
@@ -60,8 +60,8 @@ Create a .env file in the project root:
 
 This file is a practical starting point for building persistent, context-aware conversational agents using agno, Gemini, and SQLite storage.
 
-   ![image](https://github.com/user-attachments/assets/a2ea5401-b856-425f-b763-bf1b9dd7abcb)
-   ![image](https://github.com/user-attachments/assets/26b5e17b-0f25-483e-9044-11b9016652bf)
+   ![image](../assets/447960354-a2ea5401-b856-425f-b763-bf1b9dd7abcb.png)
+   ![image](../assets/447960835-26b5e17b-0f25-483e-9044-11b9016652bf.png)
 
 **4. session-storage-cli:**
 --
@@ -78,7 +78,7 @@ Create a .env file in the project root:
 ```python session-storage-cli.py```
 
 
-   https://github.com/user-attachments/assets/0e7c44b3-3b6f-43b7-860c-f97a49143afa
+[Click here to view the demo video](../assets/447961524-0e7c44b3-3b6f-43b7-860c-f97a49143afa.mp4)
 
 **5. user-memory:**
 --
@@ -106,8 +106,8 @@ Create a .env file in the project root:
 
 This file is a practical starting point for building highly personalized, context-aware conversational agents using agno, Gemini, and advanced memory management.
 
-   ![image](https://github.com/user-attachments/assets/e02bad5a-22ff-41a4-b979-f56abe5a9129)
-   ![image](https://github.com/user-attachments/assets/42252f89-8939-40ee-a6b0-b491c5381de0)
+   ![image](../assets/447970576-e02bad5a-22ff-41a4-b979-f56abe5a9129.png)
+   ![image](../assets/447970999-42252f89-8939-40ee-a6b0-b491c5381de0.png)
 
 **6. user-memory-cli:**
 --
@@ -125,12 +125,12 @@ Create a .env file in the project root:
 
 This file is a practical starting point for building highly personalized, context-aware conversational agents in a command-line environment using agno, Gemini, and advanced memory management.
 
-   ![image](https://github.com/user-attachments/assets/c45a812f-72cc-46e5-922d-06934ce16135)
-   ![image](https://github.com/user-attachments/assets/9fc6c99f-a395-48c0-b8e5-f081db019bba)
-   ![image](https://github.com/user-attachments/assets/5738eac2-3891-45ac-a885-f6b954c6c215)
-   ![image](https://github.com/user-attachments/assets/9907250f-51d2-4d71-8596-9e4979ec3347)
-   ![image](https://github.com/user-attachments/assets/700be53e-c1c9-4087-83b1-e1a1e25a53f1)
-   ![image](https://github.com/user-attachments/assets/8edc5b33-488b-41f4-a2fa-b54739fc9b76)
+   ![image](../assets/447998356-c45a812f-72cc-46e5-922d-06934ce16135.png)
+   ![image](../assets/447998615-9fc6c99f-a395-48c0-b8e5-f081db019bba.png)
+   ![image](../assets/447998851-5738eac2-3891-45ac-a885-f6b954c6c215.png)
+   ![image](../assets/447999096-9907250f-51d2-4d71-8596-9e4979ec3347.png)
+   ![image](../assets/447999320-700be53e-c1c9-4087-83b1-e1a1e25a53f1.png)
+   ![image](../assets/447999523-8edc5b33-488b-41f4-a2fa-b54739fc9b76.png)
 
 
 

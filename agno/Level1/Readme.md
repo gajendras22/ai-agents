@@ -16,7 +16,7 @@ In the project root, create a .env file containing:
 
 
 Output:
-![Screenshot (42)](https://github.com/user-attachments/assets/5db4ece5-bb6a-4d8c-ab8a-e65c80e87b9c)
+![Screenshot (42)](../assets/447223900-5db4ece5-bb6a-4d8c-ab8a-e65c80e87b9c.png)
 
 ### File : l1-config.py
 
@@ -36,4 +36,4 @@ The agent will stream a transparent, traceable report directly to your terminal 
 
 Output on CLI (With Intermediate Steps):
 
-![Screenshot (43)](https://github.com/user-attachments/assets/d676cf31-514b-421b-9491-cad6a0183931)
+![Screenshot (43)](../assets/447224024-d676cf31-514b-421b-9491-cad6a0183931.png)

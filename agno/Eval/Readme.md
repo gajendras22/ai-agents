@@ -37,4 +37,4 @@ This script is ideal for building, testing, and evaluating collaborative AI agen
 
 **OUTPUT**:
 
-![image](https://github.com/user-attachments/assets/03c88862-0b39-44b3-8d8c-f39b9a3038ad)
+![image](../assets/454267948-03c88862-0b39-44b3-8d8c-f39b9a3038ad.png)
