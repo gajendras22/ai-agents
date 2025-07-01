@@ -6,10 +6,11 @@ This repo exists to help people to get started with Agentic AI. The idea is to f
 
 ## How to use this repo
 
-* Pick the framework that you want to get your hands dirty with. 
-* Then navigate to the corresponding folder and go through the examples. 
+* Refer to the [sample problem](https://github.com/cladius/agentic-ai/blob/master/sample_problem.md) to understand the 5 level problem.
+* Pick the Agentic framework that you want to get your hands dirty with. 
+* Then navigate to the corresponding folder and go through the example solutions for the sample 5 level problem.
 * Run them as is. Understand them. Then make changes as your heart desires and gain understanding.
-* If you feel up to the challenge, make enhancements OR build agentic AI solutions in a different framework and raise a PR.
+* If you feel up to the challenge, make enhancements OR build agentic AI solutions in a different framework and raise a PR for the same 5 level problem.
 
 ## Helpful Resources
 
