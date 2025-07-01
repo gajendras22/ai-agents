@@ -1,0 +1,4 @@
+agno
+chromadb
+google-generativeai
+python-dotenv

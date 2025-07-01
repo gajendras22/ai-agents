@@ -1,0 +1,4 @@
+agno
+openinference-instrumentation-agno
+opentelemetry-sdk
+python-dotenv
