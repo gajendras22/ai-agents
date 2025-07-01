@@ -1,0 +1,30 @@
+{
+    "agentActionGroup": {
+        "actionGroupExecutor": {
+            "lambda": "arn:aws:lambda:ap-south-1:133589310670:function:test-tool-calling"
+        },
+        "actionGroupId": "CE47TIXDQO",
+        "actionGroupName": "action_group_quick_start_3dcz1",
+        "actionGroupState": "ENABLED",
+        "agentId": "CGKIATUZCV",
+        "agentVersion": "DRAFT",
+        "clientToken": "221d6312-3792-41c4-9a6e-af0bb8b02ed7",
+        "createdAt": "2025-06-30T18:29:23.585160+00:00",
+        "functionSchema": {
+            "functions": [
+                {
+                    "name": "tavilysearch",
+                    "parameters": {
+                        "search_query": {
+                            "description": "User query",
+                            "required": false,
+                            "type": "string"
+                        }
+                    },
+                    "requireConfirmation": "DISABLED"
+                }
+            ]
+        },
+        "updatedAt": "2025-06-30T18:29:23.585160+00:00"
+    }
+}
