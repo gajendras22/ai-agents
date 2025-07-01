@@ -17,3 +17,4 @@ This repo exists to help people to get started with Agentic AI. The idea is to f
 * [Agentic AI Demystified](https://cladiusfernando.com/wp-content/uploads/2025/06/Agentic-AI-Intro.pdf). Simple and short explanation of basic terms that you need to understand Agentic AI.
 * [Agentic AI Intro Deck](http://cladiusfernando.com/agentic-ai/). This is the deck that accompanies the above content
 * [Starting Trouble Solution](https://cladiusfernando.com/2025/05/29/how-to-get-started-on-your-genai-journey/) for folks stuck in analysis-paralysis.
+* [Grow with the community on LinkedIn](https://www.linkedin.com/groups/10153576/)
