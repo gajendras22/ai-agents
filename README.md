@@ -12,6 +12,10 @@ This repo exists to help people to get started with Agentic AI. The idea is to f
 * Run them as is. Understand them. Then make changes as your heart desires and gain understanding.
 * If you feel up to the challenge, make enhancements OR build agentic AI solutions in a different framework and raise a PR for the same 5 level problem.
 
+## How to Contribute
+
+We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for detailed instructions on how to get started, best practices, and the contribution process.
+
 ## Helpful Resources
 
 * [Agentic AI Demystified](https://cladiusfernando.com/wp-content/uploads/2025/06/Agentic-AI-Intro.pdf). Simple and short explanation of basic terms that you need to understand Agentic AI.
