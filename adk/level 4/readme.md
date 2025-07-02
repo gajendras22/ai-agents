@@ -137,5 +137,5 @@ Then follow up with: 'Can you provide more details on RAG corpus setup?'
 * [🔗 Gemini API](https://ai.google.dev/)
 
 ---
-<img width="961" alt="Screenshot 2025-05-27 at 11 25 13 AM" src="https://github.com/user-attachments/assets/96d6a6f1-43e6-4f54-b5e7-08254a8a427e" />
+![image](../assests/l4.png)
 

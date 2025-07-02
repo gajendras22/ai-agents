@@ -127,8 +127,9 @@ You: exit
 
 Goodbye!
 
-<img width="1468" alt="Screenshot 2025-05-10 at 3 32 20 PM" src="https://github.com/user-attachments/assets/d0d1a77b-c096-4aea-ad45-50ffc57d46f8" />
-<img width="1466" alt="Screenshot 2025-05-10 at 3 31 37 PM" src="https://github.com/user-attachments/assets/c4261a7c-6ab0-4bfb-81fa-ef02743d0500" />
+![image](../assests/l2_2.png)
+![image](../assests/l2.png)
+
 
 
 

@@ -174,10 +174,9 @@ You: exit
   * Audio: `audio_generations/`
   * Images: `image_generations/`
   * Samples: `audio_samples/`
-
-<img width="931" alt="image" src="https://github.com/user-attachments/assets/0228d965-7b3a-4d3f-b19e-72f7750e032c" />
-<img width="927" alt="image" src="https://github.com/user-attachments/assets/231910af-bf2a-4c2b-85e9-8f2fca3c3268" />
-<img width="930" alt="image" src="https://github.com/user-attachments/assets/076225f1-9331-4648-aa52-8ac6c15d8928" />
+![image](../assests/1.png)
+![image](../assests/2.png)
+![image](../assests/3.png)
 
 
 

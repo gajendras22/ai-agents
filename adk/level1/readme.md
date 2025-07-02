@@ -105,7 +105,11 @@ exit
 
 | Asking about functions                                                                                                              | Asking about OOPS                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| <img width="700" alt="Function Screenshot" src="https://github.com/user-attachments/assets/f7e18d4e-0b36-44b1-a0ff-613a1782f1e0" /> | <img width="700" alt="OOPS Screenshot" src="https://github.com/user-attachments/assets/ccdd18e9-15c7-46bc-b510-3142bedf4c65" /> |
+
+
+| ![image](../assests/442404960-ccdd18e9-15c7-46bc-b510-3142bedf4c65.png)|
+
+![image](../assests/442404985-f7e18d4e-0b36-44b1-a0ff-613a1782f1e0.png))
 
 ---
 

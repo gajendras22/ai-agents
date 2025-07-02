@@ -159,7 +159,7 @@ Add More Tools: Integrate additional Langchain tools (e.g., for database access 
 
 
 
-<img width="961" alt="Screenshot 2025-05-19 at 10 44 01 AM" src="https://github.com/user-attachments/assets/b2857100-cfb8-45fb-bb8a-79cf9b721edc" />
+![image](../assests/l3.png)
 Custom Instructions: Modify the instruction in root_agent for different topics or response styles.
 
 Web Interface: Extend with a Flask or FastAPI server to expose the /flights endpoint (or new endpoints) via HTTP.
