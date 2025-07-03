@@ -94,7 +94,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
     async def _run_async_impl(
         self, ctx: InvocationContext
     ) -> AsyncGenerator[Event, None]:
-        logger.info(f"[{self.name}] Starting enhanced multimodal processing workflow.")
+        
         logger.info(f"[{self.name}] Running Router Agent...")
         
 
@@ -111,7 +111,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                     # Update input text to indicate successful processing
                     ctx.session.state["input_text"] = f"URL processed successfully. Document ID: {doc_id}. Please provide analysis instructions."
                 else:
-                    logger.error(f"[{self.name}] Failed to process URL: {input_text}")
+                    
                     error_response = f"❌ Failed to process URL: {input_text}"
                     yield Event(
                         content=types.Content(
@@ -122,7 +122,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                     )
                     return
             except Exception as e:
-                logger.error(f"[{self.name}] Error processing URL: {str(e)}")
+                
                 error_response = f"❌ Error processing URL: {str(e)}"
                 yield Event(
                     content=types.Content(
@@ -148,9 +148,9 @@ class MultimodalOrchestratorAgent(BaseAgent):
                         # Update session state with document content for summarization
                         ctx.session.state["input_text"] = f"Summarize this content: {doc['content']}"
                         ctx.session.state["processing_instructions"] = "Generate a comprehensive summary of the provided content"
-                        logger.info(f"[{self.name}] Document content loaded for summarization")
+                        
                     else:
-                        logger.error(f"[{self.name}] Document not found: {last_doc_id}")
+                        
                         error_response = f"❌ Document not found: {last_doc_id}"
                         yield Event(
                             content=types.Content(
@@ -161,7 +161,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                         )
                         return
                 except Exception as e:
-                    logger.error(f"[{self.name}] Error retrieving document for summary: {str(e)}")
+                    
                     error_response = f"❌ Error retrieving document: {str(e)}"
                     yield Event(
                         content=types.Content(
@@ -172,7 +172,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                     )
                     return
             else:
-                logger.warning(f"[{self.name}] Summary requested but no last processed document found")
+                
                 info_response = "ℹ️ No previous document found to summarize. Please process a link first."
                 yield Event(
                     content=types.Content(
@@ -188,7 +188,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                 logger.info(f"[{self.name}] Event from Router: {event.model_dump_json(indent=2, exclude_none=True)}")
                 yield event
         except Exception as e:
-            logger.error(f"[{self.name}] Error in router agent: {str(e)}")
+            
             error_response = f"Error: Router agent failed: {str(e)}"
             yield Event(
                 content=types.Content(
@@ -201,7 +201,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
 
         routing_text = ctx.session.state.get("routing_decision", "")
         if not routing_text:
-            logger.error(f"[{self.name}] No routing decision found. Aborting workflow.")
+            
             error_response = "Error: No routing decision available."
             yield Event(
                 content=types.Content(

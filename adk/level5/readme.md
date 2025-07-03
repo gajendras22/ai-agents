@@ -4,7 +4,7 @@
 
 ## 🌐 Overview
 
-The **Multimodal AI Agent System** is a powerful Python-based framework that processes and generates diverse content types — including **text**, **audio**, **images**, and **videos**. It leverages multiple AI agents for:
+The **Multimodal AI Agent System** is a powerful Python-based framework that processes and generates diverse content types — including **text**, **audio**, **images**, and **videos**. This project is a  clone of Google’s LM Notebook, customized to demonstrate multimodal capabilities using intelligent agents. It leverages multiple AI agents for:
 
 * 🎙 Podcast script generation
 * 🗣 Audio synthesis
@@ -12,6 +12,14 @@ The **Multimodal AI Agent System** is a powerful Python-based framework that pro
 * 🎧 Real-time audio processing
 
 The system integrates with external APIs such as **Google Generative AI** and **ElevenLabs**, and uses **ChromaDB** for efficient content storage and retrieval.
+
+## 🌟 What Is This Project?
+
+ 
+The Multimodal AI Agent System is a smart assistant you can run from your computer. It understands and works with text, audio, images, and videos, making it a flexible tool for content generation and analysis.
+
+You can read the original problem statement here:
+[Problem statement](https://github.com/cladius/agentic-ai/blob/master/sample_problem.md)
 
 ---
 
@@ -36,12 +44,7 @@ The system integrates with external APIs such as **Google Generative AI** and **
   pip install -r requirements.txt
   ```
 
-### 🧩 Key Packages
 
-* `google-generativeai`
-* `elevenlabs`
-* `pydub`, `Pillow`, `chromadb`
-* `requests`, `beautifulsoup4`, `python-dotenv`
 
 ---
 
@@ -50,24 +53,26 @@ The system integrates with external APIs such as **Google Generative AI** and **
 Create a `.env` file in the root directory:
 
 ```env
-GOOGLE_API_KEY=your_google_api_key
+GOOGLE_API_KEY=your_google_api_key  
 ELEVENLABS_API_KEY=your_elevenlabs_api_key
 ```
+🔑 Get your API keys here:
+
+🔹 [Generate your Google API Key](https://aistudio.google.com/apikey)
+
+🔸 [ElevenLabs API Key](https://elevenlabs.io/app/settings/api-keys)
 
 ---
 
-## 🛠 Installation
-
-```bash
-git clone https://github.com/your-repo/multimodal-ai-agent.git
-cd multimodal-ai-agent
-pip install -r requirements.txt
-```
 
 Ensure **FFmpeg** is installed for audio processing:
 
 * macOS: `brew install ffmpeg`
 * Linux: `sudo apt-get install ffmpeg`
+
+* windows: download from here   🔗 https://ffmpeg.org/download.html
+
+
 
 ---
 
@@ -76,52 +81,16 @@ Ensure **FFmpeg** is installed for audio processing:
 Start the CLI interface:
 
 ```bash
-python multimodal_agent.py
+python agent.py
 ```
-
-### 💡 Example Commands
-
-| Command                         | Description                                |
-| ------------------------------- | ------------------------------------------ |
-| `process <url>`                 | Extracts and stores content from a webpage |
-| `search <query>`                | Searches stored documents in ChromaDB      |
-| `list`                          | Lists all stored documents                 |
-| `summary <doc_id1,doc_id2,...>` | Generates a summary from specific docs     |
-| `podcast <doc_id1,doc_id2,...>` | Generates a podcast from documents         |
-| `image <doc_id1,doc_id2,...>`   | Generates an image from documents          |
-| `exit`                          | Exits the interactive session              |
-
----
-
-## 🔍 Example Interaction
+To run on web interface
 
 ```bash
-🤖 Enhanced Multimodal AI Agent System
-======================================================================
-Available capabilities:
-- Text processing and analysis
-- Audio file processing
-- Real-time audio processing
-- Podcast generation
-- Podcast script generation
-- Image generation
-- Link processing and storage
-- Data retrieval and analysis
-======================================================================
-
-You: Generate a podcast script about AI in healthcare  
-🤖 Script Generated and stored: 'podcast_script' ✅
-
-You: process https://example.com  
-🤖 Link processed successfully. Document ID: a1b2c3d4 ✅
-
-You: exit  
-👋 Goodbye!
+python adk web
 ```
 
----
 
-## 🧩 System Components
+
 
 ### 🤖 Agents
 
@@ -159,24 +128,16 @@ You: exit
 
 ---
 
-## ⚙️ Configuration
 
-* **Environment Variables**: Set via `.env`
-
-* **Audio Settings**:
-
-  * Sample Rate: `16kHz`
-  * Bit Depth: `16-bit`
-  * Channels: `Mono`
 
 * **Output Directories**:
 
   * Audio: `audio_generations/`
   * Images: `image_generations/`
   * Samples: `audio_samples/`
-![image](../assests/1.png)
-![image](../assests/2.png)
-![image](../assests/3.png)
+![image](../assests/l5.png)
+![image](../assests/l5_1.png)
+![image](../assests/l5_2.png)
 
 
 
@@ -187,30 +148,23 @@ You: exit
 * All errors logged with timestamps.
 * Check for:
 
-  * ❌ Missing/invalid API keys
-  * ❌ Unsupported audio format
-  * ❌ Exceeding character limits in podcast scripts (<2000 chars)
+  * Missing/invalid API keys
+  * Unsupported audio format
+  *  Exceeding character limits in podcast scripts (<2000 chars)
 
 ---
 
 ## 🧪 Limitations
 
 * 📜 Script length: Max 2000 characters
-* 🎞 Video: Only URL-based analysis
-* 🎧 Real-time audio: Simulated, not live-streamed
-* 🌐 Requires active internet and valid APIs
+
+
+To see the agent in action refer to the video below:
+
+[Demo Video](https://drive.google.com/file/d/1ydevs3OMk1Skn8dXi3tU9BV1G_nbbHWC/view)
+
 
 ---
 
-## 🤝 Contributing
 
-We welcome contributions!
-
-1. Fork the repo
-2. Create a branch: `git checkout -b feature/YourFeature`
-3. Commit: `git commit -m 'Add YourFeature'`
-4. Push: `git push origin feature/YourFeature`
-5. Open a pull request 🔁
-
----
 

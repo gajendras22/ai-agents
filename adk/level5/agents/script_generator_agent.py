@@ -44,7 +44,7 @@ class ScriptGeneratorAgent(LlmAgent):
                 input_text = routing_decision.get("instructions", "")
 
         if input_text:
-            input_text = re.sub(r'^(Generate|Create)\s+a\s+podcast\s+script\s+(about|for|on)\s*', '', input_text, flags=re.IGNORECASE).strip()
+            pass
 
         if not input_text:
             error_response = "Error: No input provided for script generation."

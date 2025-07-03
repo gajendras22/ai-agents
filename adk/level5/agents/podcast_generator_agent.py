@@ -1,4 +1,3 @@
-
 import logging
 from pydantic import BaseModel, Field
 from google.adk.agents import BaseAgent
@@ -73,8 +72,6 @@ class PodcastGeneratorAgent(BaseAgent):
                     script_text = part.text.strip()
                     break
                     
-        script_text = re.sub(r'^Generate a podcast from this summary:\s*', '', script_text, flags=re.IGNORECASE).strip()
-        
         if not script_text:
             error_response = "Error: No script or text provided for podcast generation."
             yield Event(

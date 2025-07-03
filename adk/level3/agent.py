@@ -90,7 +90,7 @@ async def call_agent(query: str) -> str:
         print(f"<<< Agent: {final_response}")
         return final_response
     except Exception as e:
-        logger.error(f"Error processing query: {str(e)}")
+        
         print(f"Error: {str(e)}")
         return f"Error processing query: {str(e)}. Please verify your API keys and try again."
 

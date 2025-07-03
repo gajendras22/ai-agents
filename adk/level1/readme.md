@@ -1,125 +1,125 @@
 
+## 🌟 Hello_World Agent - A start to ADK
 
-# 🤖 Programming Concepts Tutor using Google ADK + Gemini
 
-This project is a Python-based CLI application that leverages **Google's Agent Development Kit (ADK)** and the **Gemini `gemini-2.0-flash` model** to create an interactive AI tutor. The agent is designed to provide **beginner-friendly explanations** of fundamental programming concepts such as:
+##  Overview
 
-* ✅ Object-Oriented Programming (OOPS)
-* ✅ Functions
-* ✅ Variables
-* ✅ Loops
-* ✅ Data Structures
-* ✅ Algorithms
+This is a simple, beginner-friendly **agent** built using **Google's Agent Development Kit (ADK)** and powered by **Gemini 2.0**. Ideal for quick experimentation and as a starting point for building a simple hello_world agent.
 
-Each query is handled **independently (stateless)** to ensure fresh and concise responses, with no conversation memory.
+For example , you're curious about **functions, object-oriented programming (OOPS)**, or **data structures**, this agent is designed to help in a friendly, accessible way .
+
+Refer to the sample problem : [Problem Statement](https://github.com/cladius/agentic-ai/blob/master/sample_problem.md)
 
 ---
 
-## ✨ Features
+## 📌 What Is been built
 
-* 🧑‍🎓 **Beginner-Friendly Explanations**
-  Clear and simple answers designed for users new to programming.
 
-* 💬 **Interactive Command-Line Interface**
-  Ask questions via CLI and get instant AI-powered answers.
 
-* 🧠 **Stateless Design**
-  Each question is processed in isolation—no prior context is remembered.
+✅ Tailored responses for **beginner programmers**
 
-* 🔒 **Secure Configuration**
-  API keys and sensitive values are stored in a `.env` file.
+✅ No external tools — pure model knowledge
 
-* ⚡ **Lightweight Setup**
-  No external tools or retrievers—just pure agent response.
+✅ Powered by **Gemini 2.0 Flash** model via Google ADK
+
 
 ---
 
-## ⚙️ Prerequisites
+## 📚 Example Questions to Ask
 
-Before running the app, ensure you have:
+* What is a function in Python?
+* What is artificial intelligence?
+* Which are the good IT companies?
 
-* 🐍 **Python 3.8+**
-* 🌐 **Google API Key** for accessing Gemini via `google-genai`
-* 🧠 **Google ADK** installed
-
----
-
-## 📦 Dependencies
-
-Install these Python packages:
-
-```bash
-pip install python-dotenv google-adk google-generativeai
-```
-
-**Used Packages:**
-
-* `python-dotenv` – Load environment variables securely
-* `google-adk` – Agent + session handling
-* `google-generativeai` – Access Gemini model (`gemini-2.0-flash`)
 
 ---
 
-## 🔐 Environment Configuration
+## 🛠️ Tech Stack
 
-Create a `.env` file in the root directory and add your API key:
+| Tool/Library          | Purpose                                  |
+| --------------------- | ---------------------------------------- |
+| `google-adk`          | Agent orchestration and interaction      |
+| `google-generativeai` | Gemini model integration                 |
+
+
+---
+
+## ⚙️ How It Works
+
+1. Loads your `GOOGLE_API_KEY` from a `.env` file.
+([Generate Google API Key](https://aistudio.google.com/apikey))
+
+2. Defines a **root agent** with instructions to  answer **programming-related questions**.
+3. Starts an **interactive command-line chat interface**.
+4. Uses **stateless session** per query — no memory of previous questions.
+
+
+---
+
+## 🧠 Agent Behavior
+
+The agent is **instruction-guided** with the following traits:
+
+* Always explains topics **clearly and concisely**
+* Tailors answers to **beginners** with **simple examples**
+
+* Uses **Gemini 2.0 Flash** model (fast and capable)
+
+---
+
+
+---
+
+### 4️⃣ Set Up Your `.env` File
+
+Create a `.env` file in the root directory:
 
 ```env
-GOOGLE_API_KEY=your-api-key-here
+GOOGLE_API_KEY=your_google_api_key
 ```
-
-> ⚠️ Never commit your API key to version control!
 
 ---
 
-## 🖥️ Usage
+## 🚀 How to Run
 
-### ▶️ Run the Application:
+Launch the agent from the terminal:
 
 ```bash
-python main.py
+python agent.py
 ```
 
-### 💬 Interact with the Agent:
-
-You'll see a prompt like:
-
-```
-You:
-```
-
-Ask a question, for example:
-
-* `What is a function?`
-* `What is OOPS in programming?`
-
-To exit the conversation, type:
+Launch the agent on interface:
 
 ```bash
-exit
+python adk web
 ```
 
----
-
-## 📸 Screenshots
-
-| Asking about functions                                                                                                              | Asking about OOPS                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 
 
-| ![image](../assests/442404960-ccdd18e9-15c7-46bc-b510-3142bedf4c65.png)|
-
-![image](../assests/442404985-f7e18d4e-0b36-44b1-a0ff-613a1782f1e0.png))
 
 ---
 
-## 📚 Example Queries
+| ![image](../assests/l1.png)|
 
-Try asking:
+![image](../assests/l1_1.png)
 
-* `Explain data structures with examples.`
-* `What is the difference between a loop and recursion?`
-* `How do algorithms work in real life?`
+
+
+
+From this project you can learn :
+
+* Learning **how to use Google ADK** and build intelligent agents
+* Understanding **agent architecture**
+
 
 ---
 
+---
+
+## 📎 Resources
+
+* [🧠 Gemini Docs](https://ai.google.dev/)
+* [🧰 Google ADK Documentation](https://cloud.google.com/agent-development/docs)
+
+
+---

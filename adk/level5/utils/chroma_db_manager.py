@@ -222,7 +222,7 @@ class ChromaDBManager:
             return final_response
         
         except Exception as e:
-            logger.error(f"Error generating podcast: {str(e)}")
+            
             return f"❌ Error generating podcast: {str(e)}"
 
 

@@ -1,4 +1,4 @@
-import logging
+# logger = logging.getLogger(__name__)
 from typing import AsyncGenerator, override
 from pydantic import BaseModel, Field
 from google.adk.agents import BaseAgent
@@ -11,8 +11,6 @@ from pathlib import Path
 from datetime import datetime
 import re
 import base64
-
-logger = logging.getLogger(__name__)
 
 # --- Constants from constants_and_models.py ---
 MODEL_IMAGE_GENERATION = "gemini-2.0-flash-preview-image-generation"
@@ -41,7 +39,7 @@ class ImageGenerationAgent(BaseAgent):
     """    This agent generates images based on text input using the Gemini 2.0 Flash Preview Image Generation model."""
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        logger.info(f"[{self.name}] Starting image generation.")
+        # logger.info(f"[{self.name}] Starting image generation.")
 
 
        
@@ -59,7 +57,7 @@ class ImageGenerationAgent(BaseAgent):
                     break
 
         # Clean input to extract the image description
-        input_text = re.sub(r'^(Generate|Create|Render)\s+(an\s+)?image\s+(of|for|about)\s*', '', input_text, flags=re.IGNORECASE).strip()
+        # input_text = re.sub(r'^(Generate|Create|Render)\s+(an\s+)?image\s+(of|for|about)\s*', '', input_text, flags=re.IGNORECASE).strip()
        
        
        
@@ -132,7 +130,7 @@ class ImageGenerationAgent(BaseAgent):
             )
 
         except Exception as e:
-            logger.error(f"[{self.name}] Error generating image: {str(e)}")
+            #logger.error(f"[{self.name}] Error generating image: {str(e)}")
             error_response = f"❌ Error generating image: {str(e)}"
             yield Event(
                 content=types.Content(

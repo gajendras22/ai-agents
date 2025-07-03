@@ -1,141 +1,130 @@
-# Career Advisor Agent 🌟
 
 
-## Overview 📖
+# Career Advisor Agent — With Conversational Memory
+
+This project solves **Level 2: Conversational Memory** from Google’s ADK learning path.
 
 
-Welcome to the Career Advisor Agent! This Python-based application leverages Google's Agent Development Kit (ADK) to create a conversational AI that guides users through career exploration. Powered by the gemini-2.0-flash model, the agent remembers user details (like name, interests, and background) to provide personalized career advice, recommend specific textbooks, and suggest job roles. It's like having a career counselor in your terminal! 🚀
-Features ✨
+Built as a **beginner-friendly example** for learning how to use memory in agents.
 
-Personalized Advice: Remembers user details to tailor career recommendations. 🧠
+---
+
+## 📘 What is This ?
+
+This is a **Career Advisor Agent** — a terminal-based AI assistant built with **Google's Agent Development Kit (ADK)**.
+
+Forexample, it **remembers your name, interests, and background** during a session and uses that memory to offer **personalized career guidance**, **textbook recommendations**, and **job suggestions**.
+
+It demonstrates **how to add conversational memory** to a large language model (LLM) agent — a key challenge because LLMs are **stateless by default**.
+
+---
+
+## 🎯 Use Case: Career Counseling with Context Awareness
+
+> Example: You say, “Hi, I’m Alice, interested in compiler design and ML.”
+> The agent remembers your name and interests and tailors follow-up responses based on that.
+
+---
+
+## ✨ Features
+
+* 🧠 **Conversational Memory**: Remembers user name, background, and interests within a session.
+* 😊 **Friendly Chat**: Talks like a career counselor — polite, engaging, and helpful.
+* 📚 **Resource Recommender**: Suggests textbooks and learning materials.
+* 💼 **Career Guide**: Recommends roles based on user input (e.g., ML Engineer, Compiler Developer).
+* 🔄 **Session Persistence**: Powered by `InMemorySessionService` in ADK.
+* ⚙️ **No External Tools**: Works using model knowledge only — simple and lightweight.
+
+---
 
 
-Conversational & Friendly: Engages users by name and maintains a warm tone. 😊
 
 
-Resource Recommendations: Suggests specific textbooks and learning resources tied to user interests. 📚
 
+### 3️⃣ Set Up Environment Variables
 
-Persistent Sessions: Maintains conversation history for a seamless experience. 🔄
+Create a `.env` file in the root directory:
 
+```env
+GOOGLE_API_KEY=your-google-api-key
+```
 
-No External Tools: Relies on the agent's knowledge for lightweight operation. ⚙️
+🔑 [Get your Google API key here](https://aistudio.google.com/apikey)
+
+---
+
 --------------------------------------------------------------------------
 
-## Prerequisites 🛠️
+## 🚀 Run the Agent (Terminal)
 
-Python: Version 3.8 or higher.
+```bash
+python agent.py
+```
 
+---
 
-Google ADK: Install the Google Agent Development Kit and related libraries.
+## 🌐 Run with ADK Web (Optional UI)
 
+If you want to launch the agent in a web interface:
 
-Google API Key: A valid API key for the gemini-2.0-flash model.
+```bash
+python adk web
+```
 
-
-
-
-
-## Dependencies:
-
-
-python-dotenv: For secure environment variable management.
-
-
-google-adk: For agent and session management.
-
-
-google-genai: For interacting with Google's generative AI models.
-
--------------------------------------------------------------------------
-
-## Installation ⚙️
+> ℹ️ Make sure you run this from the **parent folder** 
 
 
 
-Install Dependencies:
 
-pip install python-dotenv google-adk google-genai
-
-
-Configure Environment Variables:
-
-Create a .env file in the project root.
-
-
-Add your Google API key:GOOGLE_API_KEY=your-api-key-here
-
--------------------------------------------------------------------------
-
-
-
-## Usage 🚀
-
-Run the Application:
-
-
-python main.py
 
 -------------------------------------------------------------------------
 
 ## Interact with the Agent:
 
-The program prompts with You: .
 
-
-Introduce yourself (e.g., "Hi, I'm Alice, interested in compiler design and ML") and ask about career options.
-
-
-Follow up with questions like "What textbooks should I read?" or "What job roles suit me?".
-
-
-Type exit to quit.
 
 
 Example Interaction:
+
 Career Advisor Agent is running. Type 'exit' to quit.
-
-
 Introduce yourself and ask about career options!
-
-
---- Example conversation: ---
-You could tell the agent about yourself and ask 'What are some good career options?'
-
-
-Then follow up with: 'What are some relevant textbooks that align with my interests?'
-
-
---- End example ---
 
 You: Hi, I'm Alice, interested in compiler design and ML.
 
+Agent: Nice to meet you, Alice! Your interests in compiler design and machine learning open up exciting career paths...
 
->>> You: Hi, I'm Alice, interested in compiler design and ML.
->>>
->>> 
-<<< Agent: Nice to meet you, Alice! Your interests in compiler design and machine learning open up exciting career paths. For compiler design, you could explore roles like Compiler Engineer or Systems Software Developer. For ML, consider Machine Learning Engineer or Data Scientist. Would you like specific job role details or learning resources to get started?
 You: What textbooks should I read?
 
-
->>> You: What textbooks should I read?
->>>
->>> 
-<<< Agent: For compiler design, Alice, I recommend *Compilers: Principles, Techniques, and Tools* by Aho, Sethi, and Ullman—it's the 'Dragon Book' and a classic for understanding compiler construction. For ML, *Deep Learning* by Goodfellow, Bengio, and Courville is great for diving into neural networks, which aligns with your interests. Want more resources or details on these?
-You: exit
+Agent: For compiler design, I recommend the Dragon Book. For ML, try Deep Learning by Goodfellow...
 
 
-Goodbye!
+
+
+---
+
+## 🧠 Behind the Scenes: How Memory Works
+
+* Uses `InMemorySessionService` from ADK to store session context
+* Each user session retains name, interests, and prior inputs
+* The agent’s responses evolve based on your earlier messages
+* When the session ends or resets, memory is cleared (stateless again)
+
+---
+
+
+
+
 
 ![image](../assests/l2_2.png)
 ![image](../assests/l2.png)
 
 
+## 📚 Helpful Resources
 
+* [🧠 Gemini Model Docs](https://ai.google.dev/)
+* [🛠 Google ADK Documentation](https://cloud.google.com/agent-development/docs)
+* [📜 ADK Sample Problem: Level 2 - Memory](https://github.com/cladius/agentic-ai/blob/master/sample_problem.md)
+* [🌐 API Key Generator](https://aistudio.google.com/apikey)
 
-
-
-Notes 📌
-
-to run the agent using adk web make sure to run the command in the parent folder
+---
 

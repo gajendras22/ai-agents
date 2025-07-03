@@ -1,107 +1,55 @@
 
 
-
 # 🤖 Google ADK Agent Projects Collection
 
-Welcome to the **Google Agent Development Kit (ADK)** projects repository! This repo showcases a series of experimental AI agents built using **Google ADK** and **Gemini models**, each designed to explore different functionalities and use cases across multiple levels.
+Welcome to the **Google Agent Development Kit (ADK)** Projects Repository!
+This repo contains **5 levels of hands-on projects** built with **Google ADK + Gemini**, demonstrating how to build smart agents that learn, remember, search, and interact in natural language.
 
-Whether you're a developer, student, or researcher, this collection demonstrates how agents can be customized to teach, guide, inform, retrieve, and interact with multimodal data—all from your terminal or programmatic interface.
-
----
-
-## 📚 Levels and Projects
-
-### 🔹 **Level 1: Programming Concepts Tutor using Google ADK + Gemini**
-
-🧠 **Overview**  
-A beginner-friendly AI tutor built as a CLI-based Python app. It uses the `gemini-2.0-flash` model to explain fundamental programming concepts like:
-
-- Variables & data types
-- Control structures
-- Loops and functions
-- OOP basics
-
-Perfect for CS students or anyone new to programming!
+> 📌 Want to understand the problem each level solves?
+> 👉 [View the Official Problem Statement](https://github.com/cladius/agentic-ai/blob/master/sample_problem.md)
 
 ---
 
-### 🔹 **Level 2: Career Advisor Agent 🌟**
+## 🧩 Levels and Projects
 
-📖 **Overview**  
-This conversational AI acts like a career counselor in your terminal. Built using **Google ADK** and **Gemini**, it remembers user details (like name, interests, and background) to offer:
+### 🔹 **Level 1: Hello World agent**
 
-- Personalized career advice  
-- Job role suggestions  
-- Book/textbook recommendations  
-
-🛠 Ideal for students exploring career paths or advisors building intelligent career tools.
+💡 A Gemini-powered CLI tutor that answers basic questions 
 
 ---
 
-### 🔹 **Level 3: News Agent for US Tariffs 📰✈️**
+### 🔹 **Level 2: Career Advisor Agent**
 
-🌟 **Introduction**  
-A real-time **news summarization agent** using **Google ADK** and **Tavily Search** APIs. It fetches and summarizes recent news on US tariffs, including:
-
-- Trade negotiations  
-- Tariff changes  
-- Country-specific economic impacts  
-
-🔍 Great for building AI news dashboards or tracking global economic policies.
+🧠 learning how to use memory in agents.
 
 ---
 
-### 🔹 **Level 4: 🤖 Vertex AI RAG Agent with Google ADK**
+### 🔹 **Level 3: News Agent on US Tariffs**
 
-📡 **Overview**  
-A powerful **RAG-based agent** that leverages **Vertex AI's** Retrieval-Augmented Generation with **Google ADK**. It can:
-
-- Index custom document corpora  
-- Retrieve relevant info  
-- Answer user queries with context-aware responses
-
-🔬 Ideal for internal knowledge bases, research bots, and chat-based documentation assistants.
+📰 Adds real-world web search capabilities using Tavily Search. Fetches and summarizes news on US tariffs 
 
 ---
 
-### 🔹 **Level 5: Multimodal AI Agent System 🎙🖼🎧**
+### 🔹 **Level 4: Vertex AI RAG Agent**
 
-🌐 **Overview**  
-A full-fledged **multimodal agent system** capable of processing:
-
-- 📝 Text queries  
-- 🎙 Podcast script generation  
-- 🗣 Speech synthesis using ElevenLabs  
-- 🖼 Image generation using Gemini  
-- 🎧 Real-time audio input  
-- 🔗 URL content extraction via ChromaDB
-
-🌟 Integrates advanced capabilities from **Google Generative AI** and **ChromaDB**.  
-Perfect for building creative media agents, podcast tools, or smart digital assistants.
+📂 Implements **Retrieval-Augmented Generation (RAG)** using Vertex AI Search. Ingests PDFs and links into a corpus and answers context-specific questions.
 
 ---
 
-## 🛠 Getting Started
+### 🔹 **Level 5: Multimodal AI Agent System**
 
-Clone the repo:
-```bash
-git clone https://github.com/your-username/google-adk-agent-projects.git
-cd google-adk-agent-projects
-````
-
-Each project has its own directory with README and setup instructions.
+🎙 Combines audio, text, image, and link processing into a single CLI tool. Generates podcasts, images, analyzes audio, and scrapes links — a powerful AI content machine.
 
 ---
 
 ## 🔐 API Requirements
 
-* Google API Key (for Gemini/Generative AI)
-* Tavily Search API Key (for news agent)
-* ElevenLabs API Key (for multimodal podcast/audio)
+You'll need API keys for:
 
-Add API keys in a `.env` file for each project.
+* ✅ Google Generative AI (Gemini)
+* 🌍 Tavily Search (Level 3)
+* 🔊 ElevenLabs (Level 5)
+
+Add these to a `.env` file in each project folder.
 
 ---
-
-
-

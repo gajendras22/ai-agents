@@ -18,19 +18,20 @@ USER_ID = "test_user_123"
 MODEL_GEMINI_2_0_FLASH = "gemini-2.0-flash"
 AGENT_MODEL = MODEL_GEMINI_2_0_FLASH
 
-# --- Define the Programming Concepts Explainer Agent ---
+# --- Define the General Knowledge Agent ---
 root_agent = Agent(
-    name="programming_concepts_agent",
+    name="general_knowledge_agent",
     model=AGENT_MODEL,
-    description="Provides clear explanations of programming concepts for beginners.",
+    description="Provides clear explanations of programming concepts for beginners and answers general knowledge queries.",
     instruction=(
-        "You are a knowledgeable assistant that explains programming concepts clearly and concisely, tailored for beginners. "
-        "Answer questions about any programming topic, such as Object-Oriented Programming (OOPS), functions, variables, loops, "
-        "data structures, algorithms, or other concepts. "
+        "You are a knowledgeable assistant that explains programming concepts clearly and concisely, tailored for beginners, "
+        "and also answers general knowledge questions on various topics. "
+        "For programming-related questions, such as Object-Oriented Programming (OOPS), functions, variables, loops, "
+        "data structures, algorithms, or other concepts, provide clear explanations with beginner-friendly examples. "
         "For example, if asked 'What is a function?', explain what a function is with a simple example. "
         "If asked 'What is OOPS?', provide a brief overview of OOPS principles (encapsulation, inheritance, polymorphism, abstraction). "
         "For complex topics like data structures or algorithms, include a beginner-friendly example. "
-        "For unrelated questions, politely redirect the user to ask about programming concepts. "
+        "For non-programming questions, provide accurate and concise answers based on your general knowledge. "
         "Do not use any tools; rely on your knowledge."
     ),
     tools=[]
@@ -39,10 +40,9 @@ root_agent = Agent(
 # --- Set up Runner and Session Service ---
 session_service = InMemorySessionService()
 
-
 # --- Agent Interaction Logic ---
 async def call_concepts_explainer_agent(user_input: str) -> str:
-    """Sends a query to the programming concepts explainer agent and returns the response."""
+    """Sends a query to the general knowledge agent and returns the response."""
     print(f"\n>>> You: {user_input}")
 
     # Create a new session for each interaction to avoid maintaining conversation history
@@ -70,18 +70,16 @@ async def call_concepts_explainer_agent(user_input: str) -> str:
 
     return final_response
 
-
 # --- Interactive Loop ---
 async def main():
-    print("Programming Concepts Explainer Agent is running. Type 'exit' to quit.")
-    print("Ask about programming concepts, e.g., 'What is a function?' or 'What is OOPS?'")
+    print("General Knowledge Agent is running. Type 'exit' to quit.")
+    print("Ask about programming concepts, e.g., 'What is a function?' or 'What is OOPS?', or any general knowledge question.")
     while True:
         user_input = input("You: ")
         if user_input.lower() == "exit":
             print("Goodbye!")
             break
         await call_concepts_explainer_agent(user_input)
-
 
 if __name__ == "__main__":
     asyncio.run(main())

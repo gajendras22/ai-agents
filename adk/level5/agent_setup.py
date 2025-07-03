@@ -58,7 +58,7 @@ runner = Runner(
 async def initialize_session():
     """Initialize a new session with the proper initial state."""
     try:
-        session = session_service.create_session(
+        session = await session_service.create_session(
             app_name=APP_NAME,
             user_id=USER_ID,
             session_id=SESSION_ID,
@@ -66,11 +66,11 @@ async def initialize_session():
         )
         logger.info(f"Initial session state: {session.state}")
         logger.info(f"Session object type: {type(session)} value: {session}")
-        print(f"[DEBUG] Initial session state: {session.state}")
-        print(f"[DEBUG] Session object type: {type(session)} value: {session}")
+        
+        
         return session
     except Exception as e:
-        logger.error(f"Exception in initialize_session: {e}")
+        
         print(f"[DEBUG] Exception in initialize_session: {e}")
         return None
 
@@ -80,20 +80,20 @@ async def initialize_session():
 async def call_agent(query: str, audio_file_path: Optional[str] = None):
     try:
         # Get the most recent session state
-        current_session = session_service.get_session(
+        current_session = await session_service.get_session(
             app_name=APP_NAME,
             user_id=USER_ID,
             session_id=SESSION_ID
         )
-        logger.info(f"call_agent: get_session returned type: {type(current_session)} value: {current_session}")
+        
         print(f"[DEBUG] call_agent: get_session returned type: {type(current_session)} value: {current_session}")
         
         if not current_session:
-            logger.warning("Session not found, creating new one")
+            
             print("[DEBUG] Session not found, creating new one")
             current_session = await initialize_session()
             if not current_session:
-                logger.error("Failed to get or create session! (call_agent)")
+                
                 print("[DEBUG] Failed to get or create session! (call_agent)")
                 return "Error: Could not initialize session"
 
@@ -120,7 +120,7 @@ async def call_agent(query: str, audio_file_path: Optional[str] = None):
         print("Agent Final Response:", final_response)
 
         try:
-            final_session = session_service.get_session(
+            final_session = await session_service.get_session(
                 app_name=APP_NAME,
                 user_id=USER_ID,
                 session_id=SESSION_ID

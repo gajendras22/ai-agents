@@ -78,11 +78,11 @@ async def call_rag_agent(user_input: str) -> str:
         async for event in runner.run_async(user_id=USER_ID, session_id=SESSION_ID, new_message=user_content):
             if event.is_final_response() and event.content and event.content.parts:
                 final_response = event.content.parts[0].text
-                logger.info("Final response generated successfully")
+                
         print(f"<<< Agent: {final_response}")
         return final_response
     except Exception as e:
-        logger.error(f"Error processing query: {str(e)}")
+        
         print(f"Error: {str(e)}")
         return f"Error processing query: {str(e)}. Please verify your API keys and try again."
 
@@ -98,12 +98,12 @@ async def main():
     while True:
         user_input = input("You: ")
         if user_input.lower() in ["exit", "quit"]:
-            logger.info("Exiting program")
+        
             print("Goodbye!")
             break
         if not user_input.strip():
             print("Error: Query cannot be empty.")
-            logger.warning("Empty query entered")
+            
             continue
         await call_rag_agent(user_input)
 

@@ -1,167 +1,158 @@
 
-# News Agent for US Tariffs 📰✈️
+---
 
-
-## Introduction 🌟
-
-
-Welcome to the News Agent project! This Python application leverages the Google Agent Development Kit (ADK) and Tavily Search to provide up-to-date information on US tariffs. It’s designed to fetch recent news articles from reputable sources (like Reuters and The New York Times) and deliver concise, structured summaries on tariff-related topics, such as rates, affected countries, and economic impacts. Whether you’re curious about US-China trade talks or global trade reactions, this agent has you covered! 🚀
-This project is perfect for developers, researchers, or anyone interested in building an AI-powered news assistant. It’s built to run on an Amazon Linux EC2 instance or any Python environment with the required dependencies. Let’s dive in! 😄
+# News Agent for US Tariffs – Powered by Tools & Google ADK
 
 
 
-## Features ✨
+---
 
-Real-Time News Search: Uses Tavily Search to fetch the latest articles on US tariffs from trusted sources like Reuters, NPR, and The Guardian.
 
-Intelligent Summaries: Extracts key details (e.g., tariff percentages, economic impacts) and presents them in a clear, concise format.
+It’s built for  learning how to make LLMs "see the world" by integrating **external tools** like search.
+The **News Agent for US Tariffs** is an intelligent Python assistant that fetches the **latest news articles** and provides **concise summaries** about US trade tariffs. It combines:
 
-Asynchronous Processing: Built with asyncio for efficient, non-blocking query handling.
-
-Error Handling: Robust logging and validation for API keys and query processing.
-
-Interactive Mode: Supports both single-query execution and an interactive loop for continuous user input.
-
-Customizable: Easily extendable to include more tools or modify the agent’s instructions.
+* 🤖 **Google’s Agent Development Kit (ADK)** for conversational intelligence
+* 🔍 **Tavily Search Tool** to fetch **real-time web results**
+* 📚 LangChain tools to plug external search into the agent
 
 
 
-## Prerequisites 🛠️
+---
+
+## 🔧 What Problem Are We Solving?
+
+LLMs (like Gemini or GPT) **do not have real-world awareness** by default.
+They can’t:
+
+* Access fresh news
+* Check current prices
+* Look up latest events
+
+This project demonstrates how to **equip an LLM agent with a web search tool** using Tavily 
+
+## ✨ Features
+
+| Feature                        | Description                                                        |
+| ------------------------------ | ------------------------------------------------------------------ |
+| 🔍 **Web Search Tool**         | Queries Tavily API for fresh news articles on tariffs              |
+| 🧠 **LLM + Tools Integration** | Combines Gemini’s intelligence with real-world search              |
+| 📑 **Summarized Output**       | Extracts key points like tariff rates, affected countries, impacts |
+| 🔁 **Interactive Chat**        | Ask multiple questions in a loop or run a single-shot query        |
+| 🔒 **Secure Environment**      | Loads API keys securely with dotenv                                |
+| ⚙️ **Easy to Extend**          | Add more tools (e.g., weather, finance, databases)                 |
+
+---
+
+## 📦 Prerequisites
 
 
-To run this News Agent, ensure you have:
+* **Tavily API key** → [Get one here](https://app.tavily.com/)
+* **Google API key** → [Generate here](https://aistudio.google.com/apikey)
 
- *Python 3.8+* installed.
-
-
-## API Keys:
-
-Tavily API Key: For news search functionality. Get one at Tavily.
-
-Google API Key: For the Google ADK. Obtain it from Google Cloud or relevant Google services.
+---
 
 
-## Dependencies:
-1.python-dotenv: For loading environment variables.
-
-2.google-adk: Google’s Agent Development Kit.
-
-3.langchain-community: For integrating Tavily Search.
-
-4.Install dependencies using: *pip install python-dotenv google-adk langchain-community*
-
-
-
-
-
-## Setup ⚙️
-
-
-
-1.Clone or Create the Project:
-
-2.If using a Git repository, clone it:*cd /home/ec2-user git clone <repository-url>*
-
-
-3.Or create a new directory:mkdir /home/ec2-user/news-agent
-cd /home/ec2-user/news-agent*
-
-
-4.Set Up Environment Variables:Create a .env file in the project directory:
-nano .env
-
-5.Add:
-*TAVILY_API_KEY=your-tavily-api-key*
-
-*GOOGLE_API_KEY=your-google-api-key*
-
-6.Save and exit (Ctrl+O, Enter, Ctrl+X).
-
-7.Save the Script:Save the provided Python script as news_agent.py:
-*nano /home/ec2-user/news-agent/news_agent.py*
-
-8.Paste the script content (from from dotenv import load_dotenv to asyncio.run(main())), save, and exit.
+---
 
 
 
+---
+
+### 2️⃣ Create a `.env` File
+
+In the project root, create `.env`:
+
+```env
+TAVILY_API_KEY=your-tavily-api-key
+GOOGLE_API_KEY=your-google-api-key
+```
+
+---
+
+## 🚀 Running the Agent
 
 
-## Usage 🚀
+---
+
+4. Run the script:
+
+```bash
+python3 agent.py
+```
+
+4. Run the script in web:
+
+```bash
+python3 adk web
+```
 
 
-Single Query
-Run the script with a default query:
-cd /home/ec2-user/news-agent
-python3 news_agent.py
 
-This executes the example query: "What is the latest on US tariffs?"
-Interactive Mode
-To ask multiple questions interactively:
+📌 Now ask anything like:
 
-Uncomment the asyncio.run(main()) line in news_agent.py and comment out asyncio.run(call_agent(query)).
+* *“What are the latest US tariffs on China?”*
+* *“How is the EU responding to US tariffs?”*
+* Type `exit` to quit
 
-Run:python3 news_agent.py
+---
 
+## 🧠 How It Works (Tool-Driven Agent)
 
-Enter queries (e.g., “What are the latest US tariffs on China?”) or type exit to quit.
+1. **User inputs query**
+2. **Tavily Search Tool** fetches the latest web articles
+3. **LLM (Gemini or similar)** summarizes the findings
+4. **Agent responds** with up-to-date, factual info
 
-'''Example Output:'''
+✅ This is **LLM + Search = Intelligent Assistant**
+
+---
+
+## 🧪 Example Output
+
+```bash
 News Agent is running. Type 'exit' to quit.
-Ask about US tariffs, e.g., 'What is the latest on US tariffs?'
 
 You: What is the latest on US tariffs?
 
->>> You: What is the latest on US tariffs?
-
-
-<<< Agent: According to recent articles from Reuters, the US imposed a 25% tariff on $200 billion of Chinese goods in 2024, with ongoing trade talks aiming to reduce tensions. The New York Times reports a 10% increase in consumer goods prices due to these tariffs. Negotiations with the EU are set for December 2025.
-
-
-
-
-## File Structure 📂
-/home/ec2-user/news-agent/
-
-├── news_agent.py  # Main script for the news agent
-
-├── .env           # Environment variables (TAVILY_API_KEY, GOOGLE_API_KEY)
-
-
-
-
-## Troubleshooting 🐞
-
-API Key Errors:
-
-Ensure .env contains valid TAVILY_API_KEY and GOOGLE_API_KEY.
-
-Verify API keys in the Tavily and Google consoles.
-
-
-Dependency Issues:
-Run *pip3 install -r requirements.txt* if you create a requirements.txt with:*python-dotenv*
-
-*google-adk*
-
-*langchain-community*
-
-
-
-
-
-
-
-
-
-## Extending the Agent 🚧
-
-Add More Tools: Integrate additional Langchain tools (e.g., for database access or other APIs).
+<<< Agent:
+According to Reuters, the US imposed a 25% tariff on $200 billion of Chinese goods in 2024.
+Talks with the EU are scheduled for December 2025. Consumer prices rose by 10%.
+```
 
 
 
 ![image](../assests/l3.png)
+
 Custom Instructions: Modify the instruction in root_agent for different topics or response styles.
 
-Web Interface: Extend with a Flask or FastAPI server to expose the /flights endpoint (or new endpoints) via HTTP.
+---
 
+## 🐞 Troubleshooting
+
+| Issue                                          | Solution                                     |
+| ---------------------------------------------- | -------------------------------------------- |
+| `KeyError: GOOGLE_API_KEY` or `TAVILY_API_KEY` | Ensure `.env` file is present and valid      |
+
+---
+
+
+
+This is a **real-world, entry-level example** of how to:
+
+* Use **Google ADK** to build intelligent agents
+* Add **web search tools** to agents
+* Create **conversational systems that are aware of current events**
+
+
+---
+
+## 📚 Resources
+
+* [🧠 Google ADK Docs](https://cloud.google.com/agent-development/docs)
+* [🔍 Tavily Tool Docs](https://docs.tavily.com/)
+* [🧩 LangChain Tools](https://docs.langchain.com/docs/integrations/tools/)
+* [📜 Problem Statement: Tools (Level 3)](https://github.com/cladius/agentic-ai/blob/master/sample_problem.md)
+* [🗝 Generate Google API Key](https://aistudio.google.com/apikey)
+
+---
 

@@ -90,9 +90,6 @@ class ImageGenerationAgent(BaseAgent):
                     input_text = part.text.strip()
                     break
 
-        # Clean input to extract the image description
-        input_text = re.sub(r'^(Generate|Create|Render)\s+(an\s+)?image\s+(of|for|about)\s*', '', input_text, flags=re.IGNORECASE).strip()
-
         if not input_text:
             error_response = "Error: No input provided for image generation."
             yield Event(
@@ -159,7 +156,7 @@ class ImageGenerationAgent(BaseAgent):
             )
 
         except Exception as e:
-            logger.error(f"[{self.name}] Error generating image: {str(e)}")
+            
             error_response = f"❌ Error generating image: {str(e)}"
             yield Event(
                 content=types.Content(
@@ -202,7 +199,7 @@ class ScriptGeneratorAgent(LlmAgent):
                 input_text = routing_decision.get("instructions", "")
 
         if input_text:
-            input_text = re.sub(r'^(Generate|Create)\s+a\s+podcast\s+script\s+(about|for|on)\s*', '', input_text, flags=re.IGNORECASE).strip()
+            pass
 
         if not input_text:
             error_response = "Error: No input provided for script generation."
@@ -305,8 +302,6 @@ class PodcastGeneratorAgent(BaseAgent):
                     script_text = part.text.strip()
                     break
                     
-        script_text = re.sub(r'^Generate a podcast from this summary:\s*', '', script_text, flags=re.IGNORECASE).strip()
-        
         if not script_text:
             error_response = "Error: No script or text provided for podcast generation."
             yield Event(
