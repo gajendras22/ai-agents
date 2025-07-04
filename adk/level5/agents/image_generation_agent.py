@@ -39,7 +39,7 @@ class ImageGenerationAgent(BaseAgent):
     """    This agent generates images based on text input using the Gemini 2.0 Flash Preview Image Generation model."""
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        # logger.info(f"[{self.name}] Starting image generation.")
+        
 
 
        
@@ -56,8 +56,7 @@ class ImageGenerationAgent(BaseAgent):
                     input_text = part.text.strip()
                     break
 
-        # Clean input to extract the image description
-        # input_text = re.sub(r'^(Generate|Create|Render)\s+(an\s+)?image\s+(of|for|about)\s*', '', input_text, flags=re.IGNORECASE).strip()
+        
        
        
        

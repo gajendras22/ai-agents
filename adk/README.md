@@ -24,9 +24,9 @@ This repo contains **5 levels of hands-on projects** built with **Google ADK + G
 
 ---
 
-### 🔹 **Level 3: News Agent on US Tariffs**
+### 🔹 **Level 3: News Agent using tools**
 
-📰 Adds real-world web search capabilities using Tavily Search. Fetches and summarizes news on US tariffs 
+📰 Adds real-world web search capabilities. Fetches and summarizes news . 
 
 ---
 
@@ -46,10 +46,12 @@ This repo contains **5 levels of hands-on projects** built with **Google ADK + G
 
 You'll need API keys for:
 
-* ✅ Google Generative AI (Gemini)
-* 🌍 Tavily Search (Level 3)
-* 🔊 ElevenLabs (Level 5)
+* ✅[Gemini Docs](https://ai.google.dev/)
+* 🌍[Tavily API key](https://app.tavily.com/)
+* 🌍[Google API Key](https://aistudio.google.com/apikey)
+* 🔊[ElevenLabs API Key](https://elevenlabs.io/app/settings/api-keys)
+* [🧠 Google ADK Docs](https://cloud.google.com/agent-development/docs)
 
-Add these to a `.env` file in each project folder.
+Add the API keys to a `.env` file in each project folder.
 
 ---

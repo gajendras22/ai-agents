@@ -276,7 +276,7 @@ class MultimodalAgentInterface:
                 elif not user_input:
                     print("❌ Please enter a query.")
                     continue
-
+                # This section enables intuitive CLI commands for interacting with the multimodal agent
                 if user_input.startswith("process "):
                     url = user_input[8:].strip()
                     response = await self.process_link(url)
@@ -305,7 +305,7 @@ class MultimodalAgentInterface:
                 print("\n\nGoodbye! 👋")
                 break
             except Exception as e:
-                print(f"\n❌ Unexpected error: {str(e)}")
+                
                 logger.error(f"Unexpected error in interactive mode: {str(e)}")
 
 

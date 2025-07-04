@@ -71,7 +71,7 @@ async def main():
         sys.exit(0)
     except Exception as e:
         logger.error(f"Unexpected error in main: {e}")
-        print(f"An unexpected error occurred: {e}")
+        
         sys.exit(1)
 
 """This is the main entry point for the Level 5 multimodal agent system."""

@@ -198,8 +198,7 @@ class ScriptGeneratorAgent(LlmAgent):
             if isinstance(routing_decision, dict):
                 input_text = routing_decision.get("instructions", "")
 
-        if input_text:
-            pass
+        
 
         if not input_text:
             error_response = "Error: No input provided for script generation."

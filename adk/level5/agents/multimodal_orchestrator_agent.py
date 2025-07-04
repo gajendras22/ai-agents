@@ -293,7 +293,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                                     yield summary_event
                             else:
                                 error_response = "Error: Could not retrieve the last processed document for summarization."
-                                logger.error(f"[{self.name}] {error_response}")
+                                
                                 yield Event(
                                     content=types.Content(
                                         role='assistant',
@@ -302,7 +302,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                                     author=self.name
                                 )
                         except Exception as e:
-                            logger.error(f"[{self.name}] Error summarizing document: {str(e)}")
+                            
                             error_response = f"Error: Failed to summarize the document: {str(e)}"
                             yield Event(
                                 content=types.Content(
@@ -313,7 +313,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                             )
                     else:
                         error_response = "No document has been processed yet. Please process a link first before requesting a summary."
-                        logger.warning(f"[{self.name}] {error_response}")
+                        
                         yield Event(
                             content=types.Content(
                                 role='assistant',
@@ -323,7 +323,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                         )
                         
         except Exception as e:
-            logger.error(f"[{self.name}] Error in {primary_agent.name}: {str(e)}")
+            
             error_response = f"Error: {primary_agent.name} failed: {str(e)}"
             yield Event(
                 content=types.Content(
@@ -341,7 +341,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                     logger.info(f"[{self.name}] Event from ScriptGeneratorAgent: {event.model_dump_json(indent=2, exclude_none=True)}")
                     yield event
             except Exception as e:
-                logger.error(f"[{self.name}] Error in ScriptGeneratorAgent: {str(e)}")
+                
                 error_response = f"Error: Script generation failed: {str(e)}"
                 yield Event(
                     content=types.Content(
@@ -359,7 +359,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                     logger.info(f"[{self.name}] Event from PodcastGeneratorAgent: {event.model_dump_json(indent=2, exclude_none=True)}")
                     yield event
             except Exception as e:
-                logger.error(f"[{self.name}] Error in PodcastGeneratorAgent: {str(e)}")
+                
                 error_response = f"Error: Podcast generation failed: {str(e)}"
                 yield Event(
                     content=types.Content(
@@ -369,7 +369,7 @@ class MultimodalOrchestratorAgent(BaseAgent):
                     author=self.name
                 )
 
-        logger.info(f"[{self.name}] Enhanced multimodal workflow completed.")
+        
     
     
     
@@ -411,7 +411,7 @@ Send me your files or messages, and I'll coordinate the appropriate specialized 
                 await asyncio.sleep(0.1)
                 
         except Exception as e:
-            logger.error(f"[{self.name}] Error in live session: {e}")
+            
             error_message = f"❌ Live session error: {str(e)}"
             yield Event(
                 content=types.Content(

@@ -32,6 +32,15 @@ for var in ["GOOGLE_CLOUD_PROJECT", "GOOGLE_CLOUD_LOCATION", "STAGING_BUCKET", "
     if not os.getenv(var):
         raise ValueError(f"{var} environment variable not set.")
 
+
+"""
+Deployment script for Vertex AI RAG agent.
+
+This module configures and deploys a Retrieval-Augmented Generation (RAG) agent using Google Vertex AI.
+It loads environment variables, initializes Vertex AI, sets up retrieval tools, defines the agent,
+and deploys it to Vertex AI Agent Engine.
+
+"""
 # Initialize Vertex AI
 vertexai.init(
     project=PROJECT_ID,
@@ -61,6 +70,12 @@ root_agent = Agent(
     tools=[ask_vertex_retrieval]
 )
 
+"""
+    Deploys the configured RAG agent to Vertex AI Agent Engine.
+
+    Returns:
+        remote_app: The deployed remote agent object.
+    """
 # Deploy the agent to Vertex AI Agent Engine
 def deploy_agent():
     logger.info("Starting deployment of RAG agent to Vertex AI Agent Engine...")

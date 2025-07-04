@@ -68,8 +68,6 @@ The agent is **instruction-guided** with the following traits:
 ---
 
 
----
-
 ### 4️⃣ Set Up Your `.env` File
 
 Create a `.env` file in the root directory:
@@ -114,7 +112,6 @@ From this project you can learn :
 
 ---
 
----
 
 ## 📎 Resources
 

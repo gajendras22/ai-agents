@@ -3,7 +3,6 @@
 
 # 🤖 Vertex AI RAG Agent with Google ADK
 
-
 ---
 
 
@@ -74,6 +73,18 @@ To use Retrieval-Augmented Generation (RAG) with Vertex AI, you first need to cr
 
 ---
 
+# 🚀 Agent Deployment with deployment.py
+
+To make your Vertex AI RAG agent deployable and reusable, we've included a dedicated deployment script:
+
+```
+ deployment.py
+```
+
+🔧 Purpose: Automatically configures and deploys the RAG agent to Vertex AI Agent Engine.
+
+
+
 ---
 
 ### 2️⃣ Environment Setup
@@ -87,9 +98,6 @@ RAG_CORPUS=your_vertex_ai_corpus_id
 
 ---
 
-
-
----
 
 ## 💬 How It Works
 
@@ -126,9 +134,7 @@ python adk web
 | `Session resets each time` | Default behavior; switch to persistent store in production |
 
 ---
-ß
 
----
 
 ## 🧠 Example Use Case
 

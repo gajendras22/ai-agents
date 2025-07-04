@@ -51,7 +51,7 @@ GOOGLE_API_KEY=your-google-api-key
 
 🔑 [Get your Google API key here](https://aistudio.google.com/apikey)
 
----
+
 
 --------------------------------------------------------------------------
 
@@ -86,16 +86,16 @@ python adk web
 
 Example Interaction:
 
-Career Advisor Agent is running. Type 'exit' to quit.
-Introduce yourself and ask about career options!
+>Career Advisor Agent is running. Type 'exit' to quit.
+>Introduce yourself and ask about career options!
 
-You: Hi, I'm Alice, interested in compiler design and ML.
+>You: "Hi, I'm Alice, interested in compiler design and ML".
 
-Agent: Nice to meet you, Alice! Your interests in compiler design and machine learning open up exciting career paths...
+>Agent: Nice to meet you, Alice! Your interests in compiler design and machine learning open up exciting career paths...
 
-You: What textbooks should I read?
+>You: What textbooks should I read?
 
-Agent: For compiler design, I recommend the Dragon Book. For ML, try Deep Learning by Goodfellow...
+>Agent: For compiler design, I recommend the Dragon Book. For ML, try Deep Learning by Goodfellow...
 
 
 

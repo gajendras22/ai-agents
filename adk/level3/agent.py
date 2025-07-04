@@ -78,7 +78,7 @@ runner = Runner(
 async def call_agent(query: str) -> str:
     """Sends a query to the agent and returns the response."""
     logger.info(f"Processing query: {query}")
-    print(f"\n>>> You: {query}")
+    
     user_content = types.Content(role="user", parts=[types.Part(text=query)])
     final_response = "No response received."
 
@@ -87,7 +87,7 @@ async def call_agent(query: str) -> str:
             if event.is_final_response() and event.content and event.content.parts:
                 final_response = event.content.parts[0].text
                 logger.info("Final response generated successfully")
-        print(f"<<< Agent: {final_response}")
+        
         return final_response
     except Exception as e:
         
@@ -103,11 +103,11 @@ async def main():
         user_input = input("\nYou: ")
         if user_input.lower() == "exit":
             logger.info("Exiting program")
-            print("Goodbye!")
+            
             break
         if not user_input.strip():
             print("Error: Query cannot be empty.")
-            logger.warning("Empty query entered")
+            
             continue
         await call_agent(user_input)
 

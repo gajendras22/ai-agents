@@ -1,7 +1,7 @@
 
 ---
 
-# News Agent for US Tariffs – Powered by Tools & Google ADK
+# News Agent – Powered by Tools & Google ADK
 
 
 
@@ -9,11 +9,7 @@
 
 
 It’s built for  learning how to make LLMs "see the world" by integrating **external tools** like search.
-The **News Agent for US Tariffs** is an intelligent Python assistant that fetches the **latest news articles** and provides **concise summaries** about US trade tariffs. It combines:
-
-* 🤖 **Google’s Agent Development Kit (ADK)** for conversational intelligence
-* 🔍 **Tavily Search Tool** to fetch **real-time web results**
-* 📚 LangChain tools to plug external search into the agent
+The **News Agent ** is an intelligent Python assistant that fetches the **latest news articles** and provides **concise summaries** . 
 
 
 
@@ -28,15 +24,14 @@ They can’t:
 * Check current prices
 * Look up latest events
 
-This project demonstrates how to **equip an LLM agent with a web search tool** using Tavily 
+This project demonstrates how to **equip an LLM agent with a web search tool** 
 
 ## ✨ Features
 
 | Feature                        | Description                                                        |
 | ------------------------------ | ------------------------------------------------------------------ |
-| 🔍 **Web Search Tool**         | Queries Tavily API for fresh news articles on tariffs              |
+| 🔍 **Web Search Tool**         | Queries for fresh news articles                                    |
 | 🧠 **LLM + Tools Integration** | Combines Gemini’s intelligence with real-world search              |
-| 📑 **Summarized Output**       | Extracts key points like tariff rates, affected countries, impacts |
 | 🔁 **Interactive Chat**        | Ask multiple questions in a loop or run a single-shot query        |
 | 🔒 **Secure Environment**      | Loads API keys securely with dotenv                                |
 | ⚙️ **Easy to Extend**          | Add more tools (e.g., weather, finance, databases)                 |
@@ -48,13 +43,6 @@ This project demonstrates how to **equip an LLM agent with a web search tool** u
 
 * **Tavily API key** → [Get one here](https://app.tavily.com/)
 * **Google API key** → [Generate here](https://aistudio.google.com/apikey)
-
----
-
-
----
-
-
 
 ---
 
@@ -99,7 +87,7 @@ python3 adk web
 ## 🧠 How It Works (Tool-Driven Agent)
 
 1. **User inputs query**
-2. **Tavily Search Tool** fetches the latest web articles
+2. **Tool** fetches the latest web articles
 3. **LLM (Gemini or similar)** summarizes the findings
 4. **Agent responds** with up-to-date, factual info
 
