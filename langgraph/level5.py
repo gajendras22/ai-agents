@@ -52,6 +52,7 @@ class IntentType(Enum):
     WEBPAGE_INGEST = "webpage_ingest"
     QNA = "qna"
     PODCAST_CREATE = "podcast_create"
+    MINDMAP_CREATE = "mindmap_create"
     UNKNOWN = "unknown"
 
 
@@ -59,19 +60,17 @@ class IntentType(Enum):
 class Config:
     groq_api_key: str
     elevenlabs_api_key: str
+    embeddings_model: str
     vectorstore_path: str = "./vectorstore"
     chunk_size: int = 1000
     chunk_overlap: int = 200
 
 
-class GroqEmbeddings(Embeddings):
-    """Custom embeddings class for Groq using HuggingFaceEmbeddings"""
+class CustomEmbeddings(Embeddings):
+    """Custom embeddings class for using HuggingFaceEmbeddings"""
     
-    def __init__(self, api_key: str, model: str = "llama3-8b-8192"):
-        self.api_key = api_key
-        self.model = model
-        self.llm = ChatGroq(api_key=api_key, model_name=model)
-        self.hf_embedder = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    def __init__(self, model: str = "sentence-transformers/all-MiniLM-L6-v2"):
+        self.hf_embedder = HuggingFaceEmbeddings(model_name=model)
     
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         return self.hf_embedder.embed_documents(texts)
@@ -96,7 +95,7 @@ class AgentState(TypedDict):
 
 class IntentClassification(BaseModel):
     """Structured output for intent classification"""
-    intent: Literal["YOUTUBE_INGEST", "WEBPAGE_INGEST", "QNA", "PODCAST_CREATE", "UNKNOWN"] = Field(
+    intent: Literal["YOUTUBE_INGEST", "WEBPAGE_INGEST", "QNA", "PODCAST_CREATE", "MINDMAP_CREATE", "UNKNOWN"] = Field(
         description="The classified intent of the user input"
     )
     confidence: float = Field(
@@ -134,7 +133,8 @@ Available intents:
 2. WEBPAGE_INGEST - User wants to process/ingest a webpage or URL  
 3. QNA - User is asking a question about previously ingested content
 4. PODCAST_CREATE - User wants to create an audio podcast
-5. UNKNOWN - Intent doesn't match any category
+5. MINDMAP_CREATE - User wants to create a mind map
+6. UNKNOWN - Intent doesn't match any category
 
 User Input: "{user_input}"
 
@@ -160,6 +160,10 @@ Respond with valid JSON matching the structure above. Do NOT include any additio
             try:
                 import json
                 result_data = json.loads(response.content.strip())
+
+                # Log the raw response for debugging
+                logger.info(f"Raw structured response: {result_data}")
+
                 classification = IntentClassification(**result_data)
                 
                 # Convert to IntentType enum
@@ -168,6 +172,7 @@ Respond with valid JSON matching the structure above. Do NOT include any additio
                     "WEBPAGE_INGEST": IntentType.WEBPAGE_INGEST,
                     "QNA": IntentType.QNA,
                     "PODCAST_CREATE": IntentType.PODCAST_CREATE,
+                    "MINDMAP_CREATE": IntentType.MINDMAP_CREATE,
                     "UNKNOWN": IntentType.UNKNOWN
                 }
                 
@@ -195,11 +200,12 @@ Analyze the following user input and classify it into one of these intents:
 2. WEBPAGE_INGEST - User wants to ingest/process a webpage or URL (extract content, add to knowledge base)  
 3. QNA - User is asking a question about previously ingested content
 4. PODCAST_CREATE - User wants to create an audio podcast about a specific topic
-5. UNKNOWN - Intent doesn't match any of the above categories
+5. MINDMAP_CREATE - User wants to create a mind map
+6. UNKNOWN - Intent doesn't match any of the above categories
 
 User Input: "{user_input}"
 
-You must respond with ONLY the intent name (YOUTUBE_INGEST, WEBPAGE_INGEST, QNA, PODCAST_CREATE, or UNKNOWN).
+You must respond with ONLY the intent name (YOUTUBE_INGEST, WEBPAGE_INGEST, QNA, PODCAST_CREATE, MINDMAP_CREATE or UNKNOWN).
 
 Examples:
 - "Please add this YouTube video to my knowledge base: https://youtube.com/watch?v=123" → YOUTUBE_INGEST
@@ -303,7 +309,7 @@ Topic:"""
 class YouTubeIngesterAgent:
     """Handles YouTube video transcript ingestion"""
     
-    def __init__(self, embeddings: GroqEmbeddings, vectorstore_path: str):
+    def __init__(self, embeddings: CustomEmbeddings, vectorstore_path: str):
         self.embeddings = embeddings
         self.vectorstore_path = vectorstore_path
         self.text_splitter = RecursiveCharacterTextSplitter(
@@ -362,7 +368,7 @@ class YouTubeIngesterAgent:
 class WebpageIngesterAgent:
     """Handles webpage content ingestion"""
     
-    def __init__(self, embeddings: GroqEmbeddings, vectorstore_path: str):
+    def __init__(self, embeddings: CustomEmbeddings, vectorstore_path: str):
         self.embeddings = embeddings
         self.vectorstore_path = vectorstore_path
         self.text_splitter = RecursiveCharacterTextSplitter(
@@ -415,7 +421,7 @@ class WebpageIngesterAgent:
 class QnAAgent:
     """Handles question answering using retrieved content"""
     
-    def __init__(self, llm: ChatGroq, embeddings: GroqEmbeddings, vectorstore_path: str):
+    def __init__(self, llm: ChatGroq, embeddings: CustomEmbeddings, vectorstore_path: str):
         self.llm = llm
         self.embeddings = embeddings
         self.vectorstore_path = vectorstore_path
@@ -602,6 +608,56 @@ class PodcastAgent:
             logger.error(f"Error in text-to-speech: {str(e)}")
             return None
 
+class MindMapAgent:
+    """Generates mindmap in mermaid.js syntax from retrieved content"""
+    
+    def __init__(self, llm: ChatGroq):
+        self.llm = llm
+    
+    def generate_mindmap(self, topic: str, content: List[str]) -> str:
+        """Generate mindmap for a given topic based on retrieved content in mermaid.js syntax"""
+        try:
+            logger.info(f"Generating mindmap for topic: {topic}")
+            
+            if not content:
+                return "Not enough content to generate mindmap."
+            
+            # Combine content
+            combined_content = "\n\n".join(content[:5])  # Use top 5 chunks
+
+            prompt = f"""Create a mindmap for "{topic}" based on the following content:
+
+Content:
+{combined_content}
+
+Instructions:
+- Output in mermaid.js syntax
+- Use clear hierarchical structure
+- Include main topic and subtopics
+- Do NOT use markdown. Do NOT print anything other than the mindmap code.
+- Format as:
+```mermaid
+mindmap
+  root((Main Topic))
+    subtopic1((Subtopic 1))
+    subtopic2((Subtopic 2))
+```
+- Each node should be a clear concept or idea
+- Use concise labels for nodes
+
+Output:"""
+            
+            response = self.llm.invoke(prompt)
+
+            logger.info(f"Generated mindmap.")
+            
+            if not response.content.strip():
+                return "Failed to generate mindmap. Please try again."
+            return response.content
+            
+        except Exception as e:
+            logger.error(f"Error generating mindmap: {str(e)}")
+            return f"Error generating mindmap: {str(e)}"
 
 class NotebookLMApp:
     """Main application class orchestrating all agents"""
@@ -613,7 +669,7 @@ class NotebookLMApp:
         self.llm = ChatGroq(api_key=config.groq_api_key, model_name="llama3-8b-8192")
         
         # Initialize embeddings
-        self.embeddings = GroqEmbeddings(config.groq_api_key)
+        self.embeddings = CustomEmbeddings(config.embeddings_model)
         
         # Initialize agents
         self.planner = PlannerAgent(self.llm)
@@ -622,6 +678,7 @@ class NotebookLMApp:
         self.qna_agent = QnAAgent(self.llm, self.embeddings, config.vectorstore_path)
         self.transcript_agent = PodcastTranscriptAgent(self.llm)
         self.podcast_agent = PodcastAgent(config.elevenlabs_api_key)
+        self.mindmap_agent = MindMapAgent(self.llm)
         
         # Initialize LangGraph
         self.graph = self._create_graph()
@@ -641,6 +698,7 @@ class NotebookLMApp:
         workflow.add_node("qna", self._qna_node)
         workflow.add_node("podcast_transcript", self._podcast_transcript_node)
         workflow.add_node("podcast_audio", self._podcast_audio_node)
+        workflow.add_node("mindmap_create", self._generate_mindmap_node)
         workflow.add_node("respond", self._respond_node)
         
         # Set entry point
@@ -655,6 +713,7 @@ class NotebookLMApp:
                 "webpage_ingest": "webpage_ingester",
                 "qna": "qna",
                 "podcast_create": "qna",  # First retrieve content
+                "mindmap_create": "qna",  # First retrieve content
                 "unknown": "respond"
             }
         )
@@ -662,6 +721,7 @@ class NotebookLMApp:
         # Add edges to respond
         workflow.add_edge("youtube_ingester", "respond")
         workflow.add_edge("webpage_ingester", "respond")
+        workflow.add_edge("mindmap_create", "respond")
         workflow.add_edge("podcast_transcript", "podcast_audio")
         workflow.add_edge("podcast_audio", "respond")
         workflow.add_edge("respond", END)
@@ -669,10 +729,11 @@ class NotebookLMApp:
         # Add conditional edge from qna for podcast creation
         workflow.add_conditional_edges(
             "qna",
-            self._check_podcast_intent,
+            self._route_intent,
             {
-                "podcast": "podcast_transcript",
-                "answer": "respond"
+                "podcast_create": "podcast_transcript",
+                "qna": "respond",
+                "mindmap_create": "mindmap_create"
             }
         )
         
@@ -687,7 +748,7 @@ class NotebookLMApp:
         # Use extracted values or fall back to individual extraction methods
         if intent in [IntentType.YOUTUBE_INGEST, IntentType.WEBPAGE_INGEST]:
             state["url"] = extracted_url or self.planner.extract_url_from_input(state["user_input"])
-        elif intent == IntentType.PODCAST_CREATE:
+        elif intent in [IntentType.PODCAST_CREATE, IntentType.MINDMAP_CREATE]:
             state["topic"] = extracted_topic or self.planner.extract_topic_from_input(state["user_input"])
         elif intent == IntentType.QNA:
             state["query"] = state["user_input"]
@@ -714,7 +775,10 @@ class NotebookLMApp:
     
     def _qna_node(self, state: AgentState) -> AgentState:
         """QnA node"""
-        if state["intent"] == "podcast_create":
+
+        # If the intent is podcast creation OR mindmap creation,
+        # retrieve content first
+        if state["intent"] in ["podcast_create", "mindmap_create"]:
             # Retrieve content for podcast
             content = self.qna_agent.retrieve_content_for_topic(state.get("topic", ""))
             state["retrieved_content"] = content
@@ -732,6 +796,14 @@ class NotebookLMApp:
         state["transcript"] = transcript
         return state
     
+    def _generate_mindmap_node(self, state: AgentState) -> AgentState:
+        """Generate mindmap node"""
+        topic = state.get("topic", "general topic")
+        content = state.get("retrieved_content", [])
+        mindmap = self.mindmap_agent.generate_mindmap(topic, content)
+        state["response"] = mindmap
+        return state
+
     def _podcast_audio_node(self, state: AgentState) -> AgentState:
         """Podcast audio node"""
         transcript = state.get("transcript", "")
@@ -755,10 +827,6 @@ class NotebookLMApp:
     def _route_intent(self, state: AgentState) -> str:
         """Route based on detected intent"""
         return state["intent"]
-    
-    def _check_podcast_intent(self, state: AgentState) -> str:
-        """Check if this is for podcast creation"""
-        return "podcast" if state["intent"] == "podcast_create" else "answer"
     
     def run_cli(self):
         """Run the CLI interface"""
@@ -819,6 +887,7 @@ def load_config() -> Config:
     """Load configuration from environment variables"""
     groq_api_key = os.getenv("GROQ_API_KEY")
     elevenlabs_api_key = os.getenv("ELEVENLABS_API_KEY")
+    embeddings_model = os.getenv("EMBEDDINGS_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
     
     if not groq_api_key:
         raise ValueError("GROQ_API_KEY environment variable is required")
@@ -827,7 +896,8 @@ def load_config() -> Config:
     
     return Config(
         groq_api_key=groq_api_key,
-        elevenlabs_api_key=elevenlabs_api_key
+        elevenlabs_api_key=elevenlabs_api_key,
+        embeddings_model=embeddings_model
     )
 
 
