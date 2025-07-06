@@ -46,12 +46,16 @@ This repo contains **5 levels of hands-on projects** built with **Google ADK + G
 
 You'll need API keys for:
 
-* ✅[Gemini Docs](https://ai.google.dev/)
 * 🌍[Tavily API key](https://app.tavily.com/)
 * 🌍[Google API Key](https://aistudio.google.com/apikey)
 * 🔊[ElevenLabs API Key](https://elevenlabs.io/app/settings/api-keys)
-* [🧠 Google ADK Docs](https://cloud.google.com/agent-development/docs)
+
 
 Add the API keys to a `.env` file in each project folder.
 
+
+## 🔐 Resources
+
+* ✅[Gemini Docs](https://ai.google.dev/)
+*  [🧠 Google ADK Docs](https://cloud.google.com/agent-development/docs)
 ---

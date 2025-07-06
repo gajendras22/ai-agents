@@ -62,13 +62,13 @@ GOOGLE_API_KEY=your-google-api-key
 
 ---
 
-4. Run the script:
+Run the script:
 
 ```bash
 python3 agent.py
 ```
 
-4. Run the script in web:
+ Run the script in web:
 
 ```bash
 python3 adk web
@@ -140,7 +140,10 @@ This is a **real-world, entry-level example** of how to:
 * [🔍 Tavily Tool Docs](https://docs.tavily.com/)
 * [🧩 LangChain Tools](https://docs.langchain.com/docs/integrations/tools/)
 * [📜 Problem Statement: Tools (Level 3)](https://github.com/cladius/agentic-ai/blob/master/sample_problem.md)
-* [🗝 Generate Google API Key](https://aistudio.google.com/apikey)
+
 
 ---
+## 📚 API key
+
+* [🗝 Generate Google API Key](https://aistudio.google.com/apikey)
 

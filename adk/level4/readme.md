@@ -94,6 +94,11 @@ Create a `.env` file:
 ```env
 GOOGLE_API_KEY=your_gemini_api_key
 RAG_CORPUS=your_vertex_ai_corpus_id
+CORPUS_NAME=my_first_corpus
+CORPUS_DESCRIPTION=My first RAG corpus
+UPLOAD_FILE_PATH=/absolute/path/to/your/file.pdf
+GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+GOOGLE_CLOUD_LOCATION=us-central1
 ```
 
 ---
@@ -158,4 +163,8 @@ python adk web
 * [📄 Problem Statement: Level 4 – Vector Store](https://github.com/cladius/agentic-ai/blob/master/sample_problem.md)
 
 ---
+
+## 📚 API key
+
+* [🗝 Generate Google API Key](https://aistudio.google.com/apikey)
 

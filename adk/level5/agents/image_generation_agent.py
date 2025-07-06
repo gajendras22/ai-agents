@@ -129,7 +129,6 @@ class ImageGenerationAgent(BaseAgent):
             )
 
         except Exception as e:
-            #logger.error(f"[{self.name}] Error generating image: {str(e)}")
             error_response = f"❌ Error generating image: {str(e)}"
             yield Event(
                 content=types.Content(

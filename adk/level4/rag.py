@@ -13,11 +13,15 @@ logger = logging.getLogger(__name__)
 # Load environment variables
 load_dotenv()
 
-# Configuration
+
+
+# Configuration from .env
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
-LOCATION = os.getenv("GOOGLE_CLOUD_LOCATION", "us-central1")  # Default to us-central1
-CORPUS_NAME = "my_first_corpus"
-CORPUS_DESCRIPTION = "My first RAG corpus"
+LOCATION = os.getenv("GOOGLE_CLOUD_LOCATION", "us-central1")
+CORPUS_NAME = os.getenv("CORPUS_NAME")
+CORPUS_DESCRIPTION = os.getenv("CORPUS_DESCRIPTION")
+UPLOAD_FILE_PATH = os.getenv("UPLOAD_FILE_PATH")
+
 
 # Initialize Vertex AI
 def initialize_vertex_ai():
@@ -76,7 +80,7 @@ def main():
         initialize_vertex_ai()
         corpus = create_corpus()
         file_path = "/Users/sakhiagrawal/Desktop/Project/bioengineering-10-00018.pdf"  # Update with a valid file path
-        upload_file_to_corpus(corpus.name, file_path)
+        upload_file_to_corpus(corpus.name, UPLOAD_FILE_PATH)
         logger.info("Process completed successfully")
     except Exception as e:
         logger.error(f"Main function failed: {e}")
