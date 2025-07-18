@@ -13,27 +13,6 @@ from datetime import datetime
 # Note: Data models were originally planned but the implementation uses dictionaries
 # for tool return values instead of dataclasses for simplicity and flexibility
 
-# Define a custom tool as a Python function using the @tool decorator
-@tool
-def letter_counter(word: str, letter: str) -> int:
-    """
-    Count occurrences of a specific letter in a word.
-
-    Args:
-        word (str): The input word to search in
-        letter (str): The specific letter to count
-
-    Returns:
-        int: The number of occurrences of the letter in the word
-    """
-    if not isinstance(word, str) or not isinstance(letter, str):
-        return 0
-
-    if len(letter) != 1:
-        raise ValueError("The 'letter' parameter must be a single character")
-
-    return word.lower().count(letter.lower())
-
 @tool
 def pdf_processor(start_page: Optional[int] = None, file_path: str = "book.pdf") -> Dict:
     """
@@ -456,6 +435,9 @@ def post_generator(analysis_result: Dict, model_id: str = "anthropic.claude-3-so
             'optimization_notes': str - notes about post optimization applied
         }
     """
+
+    print(f"Inside post generator method")
+
     try:
         # Validate input
         if not analysis_result or not isinstance(analysis_result, dict):
@@ -861,11 +843,14 @@ def generate_social_post(file_path: str = "book.pdf", start_page: Optional[int] 
         }
         
         print("🔄 Starting PDF-to-Social-Post workflow...")
+        logger.info(f"Starting PDF-to-Social-Post workflow with file: {file_path}, start_page: {start_page}, use_mock: {use_mock}")
         
         # Step 1: Process PDF and extract text
         print("📄 Step 1: Processing PDF and extracting text...")
+        logger.info("Step 1: Processing PDF and extracting text")
         pdf_result = pdf_processor(start_page=start_page, file_path=file_path)
         workflow_results['pdf_processing'] = pdf_result
+        logger.info(f"PDF processing result: success={pdf_result.get('success')}, pages={pdf_result.get('pages_read')}")
         
         if not pdf_result.get('success', False):
             return {
@@ -888,8 +873,10 @@ def generate_social_post(file_path: str = "book.pdf", start_page: Optional[int] 
         
         # Step 2: Analyze content for themes and key messages
         print("🧠 Step 2: Analyzing content for themes and insights...")
+        logger.info(f"Step 2: Analyzing content (length: {len(extracted_text)} chars, use_mock: {use_mock})")
         analysis_result = content_analyzer(text_content=extracted_text, use_mock=use_mock)
         workflow_results['content_analysis'] = analysis_result
+        logger.info(f"Content analysis result: success={analysis_result.get('success')}, themes={len(analysis_result.get('core_themes', []))}")
         
         if not analysis_result.get('success', False):
             return {
@@ -914,8 +901,10 @@ def generate_social_post(file_path: str = "book.pdf", start_page: Optional[int] 
         
         # Step 3: Generate social media post
         print("📱 Step 3: Generating social media post...")
+        logger.info(f"Step 3: Generating social media post (use_mock: {use_mock})")
         post_result = post_generator(analysis_result=analysis_result, use_mock=use_mock)
         workflow_results['post_generation'] = post_result
+        logger.info(f"Post generation result: success={post_result.get('success')}, char_count={post_result.get('character_count', 0)}")
         
         if not post_result.get('success', False):
             return {
@@ -973,13 +962,38 @@ def generate_social_post(file_path: str = "book.pdf", start_page: Optional[int] 
 
 # Create an agent with tools from the strands-tools example tools package
 # as well as our custom tools
-agent = Agent(tools=[calculator, current_time, python_repl, use_aws, letter_counter, pdf_processor, content_analyzer, post_generator, generate_social_post], model="anthropic.claude-3-sonnet-20240229-v1:0")
+agent = Agent(
+    tools=[
+        current_time, 
+        python_repl, 
+        use_aws, 
+        pdf_processor, 
+        content_analyzer, 
+        post_generator, 
+        generate_social_post
+    ], 
+    model="anthropic.claude-3-sonnet-20240229-v1:0"
+)
+
+# Add logging configuration for better debugging and monitoring
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('pdf_social_post.log'),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
 
 # Example usage and testing
 if __name__ == "__main__":
     
     message = """
-    Please analyze this text using the content_analyzer tool and generate a post using the post_generator tool:
-    "One mistake that some teams make is delaying the demo of the product to the customer until development is complete. That’s a big risk. It’s better to keep doing demos in a phased manner with the client and get feedback. This helps in easier course correction. And helps the team to maintain pace in providing deliveries. There is also that sense of accomplishment with each incremental demo that helps boost the team’s confidence. Plan to have these demos at significant milestones throughout the development phase of projects. Do not wait for permission or for your client to request a demo. Be proactive and schedule a demo with the client and if possible, the actual end users of the system"
+    Read some random content from book.pdf, analyze the content and create a social media post.
     """
     agent(message)
