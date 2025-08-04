@@ -1,0 +1,383 @@
+{
+    "arn": "arn:aws:bedrock:ap-south-1:133589310670:flow/0ERAWZ01UJ",
+    "createdAt": "2025-05-26T17:27:53.716084+00:00",
+    "definition": {
+        "connections": [
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "functionResponse",
+                        "targetInput": "document"
+                    }
+                },
+                "name": "create_audio_podcastLambdaFunctionNode0Toaudio_podcast_output_nodeFlowOutputNode0",
+                "source": "create_audio_podcast",
+                "target": "audio_podcast_output_node",
+                "type": "Data"
+            },
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "document",
+                        "targetInput": "input"
+                    }
+                },
+                "name": "FlowInputNodeFlowInputNode0Tointent_classificationPromptsNode0",
+                "source": "FlowInputNode",
+                "target": "intent_classification",
+                "type": "Data"
+            },
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "modelCompletion",
+                        "targetInput": "codeHookInput"
+                    }
+                },
+                "name": "intent_classificationPromptsNode0ToobjectifierLambdaFunctionNode0",
+                "source": "intent_classification",
+                "target": "objectifier",
+                "type": "Data"
+            },
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "functionResponse",
+                        "targetInput": "retrievalQuery"
+                    }
+                },
+                "name": "objectifierLambdaFunctionNode0Toget_info_from_kbKnowledgeBaseNode0",
+                "source": "objectifier",
+                "target": "get_info_from_kb",
+                "type": "Data"
+            },
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "functionResponse",
+                        "targetInput": "intent"
+                    }
+                },
+                "name": "objectifierLambdaFunctionNode0TorouterConditionNode0",
+                "source": "objectifier",
+                "target": "router",
+                "type": "Data"
+            },
+            {
+                "configuration": {
+                    "conditional": {
+                        "condition": "Condition"
+                    }
+                },
+                "name": "routerConditionNodeHandle0Tocreate_audio_podcastcreate_audio_podcastHeaderHandle",
+                "source": "router",
+                "target": "create_audio_podcast",
+                "type": "Conditional"
+            },
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "outputText",
+                        "targetInput": "content"
+                    }
+                },
+                "name": "get_info_from_kbKnowledgeBaseNode0Tocreate_audio_podcastLambdaFunctionNode0",
+                "source": "get_info_from_kb",
+                "target": "create_audio_podcast",
+                "type": "Data"
+            },
+            {
+                "configuration": {
+                    "conditional": {
+                        "condition": "Condition1"
+                    }
+                },
+                "name": "routerConditionNodeHandle1Tosimple_answer_output_nodesimple_answer_output_nodeHeaderHandle",
+                "source": "router",
+                "target": "simple_answer_output_node",
+                "type": "Conditional"
+            },
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "outputText",
+                        "targetInput": "document"
+                    }
+                },
+                "name": "get_info_from_kbKnowledgeBaseNode0Tosimple_answer_output_nodeFlowOutputNode0",
+                "source": "get_info_from_kb",
+                "target": "simple_answer_output_node",
+                "type": "Data"
+            },
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "outputText",
+                        "targetInput": "content"
+                    }
+                },
+                "name": "get_info_from_kbKnowledgeBaseNode0Tocreate_mindmapPromptsNode0",
+                "source": "get_info_from_kb",
+                "target": "create_mindmap",
+                "type": "Data"
+            },
+            {
+                "configuration": {
+                    "conditional": {
+                        "condition": "Condition2"
+                    }
+                },
+                "name": "routerConditionNodeHandle2Tocreate_mindmapcreate_mindmapHeaderHandle",
+                "source": "router",
+                "target": "create_mindmap",
+                "type": "Conditional"
+            },
+            {
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "modelCompletion",
+                        "targetInput": "document"
+                    }
+                },
+                "name": "create_mindmapPromptsNode0Tomind_map_output_nodeFlowOutputNode0",
+                "source": "create_mindmap",
+                "target": "mind_map_output_node",
+                "type": "Data"
+            }
+        ],
+        "nodes": [
+            {
+                "configuration": {
+                    "input": {}
+                },
+                "name": "FlowInputNode",
+                "outputs": [
+                    {
+                        "name": "document",
+                        "type": "String"
+                    }
+                ],
+                "type": "Input"
+            },
+            {
+                "configuration": {
+                    "output": {}
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data",
+                        "name": "document",
+                        "type": "Object"
+                    }
+                ],
+                "name": "audio_podcast_output_node",
+                "type": "Output"
+            },
+            {
+                "configuration": {
+                    "knowledgeBase": {
+                        "knowledgeBaseId": "S50MKBGMXK",
+                        "modelId": "arn:aws:bedrock:ap-south-1:133589310670:inference-profile/apac.amazon.nova-micro-v1:0"
+                    }
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data.topic",
+                        "name": "retrievalQuery",
+                        "type": "String"
+                    }
+                ],
+                "name": "get_info_from_kb",
+                "outputs": [
+                    {
+                        "name": "outputText",
+                        "type": "String"
+                    }
+                ],
+                "type": "KnowledgeBase"
+            },
+            {
+                "configuration": {
+                    "lambdaFunction": {
+                        "lambdaArn": "arn:aws:lambda:ap-south-1:133589310670:function:create_podcast:$LATEST"
+                    }
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data",
+                        "name": "content",
+                        "type": "String"
+                    }
+                ],
+                "name": "create_audio_podcast",
+                "outputs": [
+                    {
+                        "name": "functionResponse",
+                        "type": "Object"
+                    }
+                ],
+                "type": "LambdaFunction"
+            },
+            {
+                "configuration": {
+                    "prompt": {
+                        "sourceConfiguration": {
+                            "resource": {
+                                "promptArn": "arn:aws:bedrock:ap-south-1:133589310670:prompt/M3I0LW1FZY"
+                            }
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data",
+                        "name": "input",
+                        "type": "String"
+                    }
+                ],
+                "name": "intent_classification",
+                "outputs": [
+                    {
+                        "name": "modelCompletion",
+                        "type": "String"
+                    }
+                ],
+                "type": "Prompt"
+            },
+            {
+                "configuration": {
+                    "condition": {
+                        "conditions": [
+                            {
+                                "expression": "intent == \"AUDIO_PODCAST\"",
+                                "name": "Condition"
+                            },
+                            {
+                                "expression": "intent == \"SIMPLE_ANSWER\"",
+                                "name": "Condition1"
+                            },
+                            {
+                                "expression": "intent == \"MIND_MAP\"",
+                                "name": "Condition2"
+                            },
+                            {
+                                "name": "default"
+                            }
+                        ]
+                    }
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data.intent",
+                        "name": "intent",
+                        "type": "String"
+                    }
+                ],
+                "name": "router",
+                "type": "Condition"
+            },
+            {
+                "configuration": {
+                    "lambdaFunction": {
+                        "lambdaArn": "arn:aws:lambda:ap-south-1:133589310670:function:objectifier:$LATEST"
+                    }
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data",
+                        "name": "codeHookInput",
+                        "type": "String"
+                    }
+                ],
+                "name": "objectifier",
+                "outputs": [
+                    {
+                        "name": "functionResponse",
+                        "type": "Object"
+                    }
+                ],
+                "type": "LambdaFunction"
+            },
+            {
+                "configuration": {
+                    "output": {}
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data",
+                        "name": "document",
+                        "type": "String"
+                    }
+                ],
+                "name": "simple_answer_output_node",
+                "type": "Output"
+            },
+            {
+                "configuration": {
+                    "prompt": {
+                        "sourceConfiguration": {
+                            "inline": {
+                                "inferenceConfiguration": {
+                                    "text": {
+                                        "maxTokens": 512,
+                                        "stopSequences": [],
+                                        "temperature": 0.699999988079071,
+                                        "topP": 0.8999999761581421
+                                    }
+                                },
+                                "modelId": "arn:aws:bedrock:ap-south-1:133589310670:inference-profile/apac.amazon.nova-pro-v1:0",
+                                "templateConfiguration": {
+                                    "text": {
+                                        "inputVariables": [
+                                            {
+                                                "name": "content"
+                                            }
+                                        ],
+                                        "text": "Analyze the below content and extract entities from it. Then create the code to visualize them in mermaid.js in the form of a mindmap. Do NOT repeat nodes in the mindmap with the same name. Deduplicate.\n\nOutput ONLY the mermaid js code. Do NOT print anything else.\n\nContent: {{content}}"
+                                    }
+                                },
+                                "templateType": "TEXT"
+                            }
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data",
+                        "name": "content",
+                        "type": "String"
+                    }
+                ],
+                "name": "create_mindmap",
+                "outputs": [
+                    {
+                        "name": "modelCompletion",
+                        "type": "String"
+                    }
+                ],
+                "type": "Prompt"
+            },
+            {
+                "configuration": {
+                    "output": {}
+                },
+                "inputs": [
+                    {
+                        "expression": "$.data",
+                        "name": "document",
+                        "type": "String"
+                    }
+                ],
+                "name": "mind_map_output_node",
+                "type": "Output"
+            }
+        ]
+    },
+    "executionRoleArn": "arn:aws:iam::133589310670:role/service-role/AmazonBedrockExecutionRoleForFlows_4IRR77XUM0V",
+    "id": "0ERAWZ01UJ",
+    "name": "level-5",
+    "status": "Prepared",
+    "updatedAt": "2025-07-01T15:11:13.011256+00:00",
+    "validations": [],
+    "version": "DRAFT"
+}

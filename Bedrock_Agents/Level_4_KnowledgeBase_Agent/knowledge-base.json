@@ -1,0 +1,36 @@
+{
+    "knowledgeBase": {
+        "createdAt": "2025-07-01T15:00:53.723640+00:00",
+        "description": "Vector Store of Agentic AI Demystified book",
+        "knowledgeBaseArn": "arn:aws:bedrock:ap-south-1:133589310670:knowledge-base/S50MKBGMXK",
+        "knowledgeBaseConfiguration": {
+            "type": "VECTOR",
+            "vectorKnowledgeBaseConfiguration": {
+                "embeddingModelArn": "arn:aws:bedrock:ap-south-1::foundation-model/amazon.titan-embed-text-v2:0",
+                "embeddingModelConfiguration": {
+                    "bedrockEmbeddingModelConfiguration": {
+                        "dimensions": 1024,
+                        "embeddingDataType": "FLOAT32"
+                    }
+                }
+            }
+        },
+        "knowledgeBaseId": "S50MKBGMXK",
+        "name": "agenticai",
+        "roleArn": "arn:aws:iam::133589310670:role/service-role/AmazonBedrockExecutionRoleForKnowledgeBase_AgenticAI",
+        "status": "ACTIVE",
+        "storageConfiguration": {
+            "opensearchServerlessConfiguration": {
+                "collectionArn": "arn:aws:aoss:ap-south-1:133589310670:collection/yy9xg7i2nquu5ve1740c",
+                "fieldMapping": {
+                    "metadataField": "AMAZON_BEDROCK_METADATA",
+                    "textField": "AMAZON_BEDROCK_TEXT",
+                    "vectorField": "bedrock-knowledge-base-default-vector"
+                },
+                "vectorIndexName": "bedrock-knowledge-base-default-index"
+            },
+            "type": "OPENSEARCH_SERVERLESS"
+        },
+        "updatedAt": "2025-07-01T15:00:53.723640+00:00"
+    }
+}
